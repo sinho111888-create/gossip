@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>易经 · 今日运程</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: #1a0c0a;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(180,130,60,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(139,69,19,0.1) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L33 12 L40 12 L35 17 L37 24 L30 20 L23 24 L25 17 L20 12 L27 12Z' fill='%23b8870e05'/%3E%3C/svg%3E");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Serif SC', serif;
+  color: #d4b87a;
+}
+
+.container {
+  width: 90%;
+  max-width: 520px;
+  padding: 48px 36px;
+  border: 2px solid #8b6914;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #1e1210 0%, #160d0a 100%);
+  box-shadow:
+    0 0 40px rgba(139,105,20,0.15),
+    inset 0 0 60px rgba(139,105,20,0.03);
+  position: relative;
+}
+
+.container::before {
+  content: '';
+  position: absolute; inset: 8px;
+  border: 1px solid #5a4210;
+  border-radius: 2px; pointer-events: none;
+}
+
+.head {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.head .bagua {
+  font-size: 48px; line-height: 1; color: #b8870e;
+  text-shadow: 0 0 20px rgba(184,135,14,0.4);
+  margin-bottom: 8px;
+}
+
+.head h1 {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 36px; color: #d4a030;
+  letter-spacing: 4px;
+  text-shadow: 0 2px 8px rgba(180,130,60,0.3);
+}
+
+.head .sub {
+  font-size: 13px; color: #8b7355;
+  letter-spacing: 2px; margin-top: 4px;
+}
+
+.head .divider {
+  margin: 16px auto 0;
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, #8b6914, transparent);
+}
+
+.input-area {
+  margin-bottom: 28px;
+}
+
+.input-area label {
+  display: block;
+  text-align: center;
+  font-size: 15px; letter-spacing: 2px;
+  margin-bottom: 12px; color: #b8995b;
+}
+
+.input-row {
+  display: flex; gap: 10px;
+}
+
+.input-row input {
+  flex: 1;
+  background: #0d0806;
+  border: 1px solid #4a3410;
+  border-radius: 2px;
+  padding: 12px 16px;
+  font-size: 18px;
+  color: #d4b87a;
+  font-family: 'Noto Serif SC', serif;
+  text-align: center; letter-spacing: 2px;
+  outline: none;
+  transition: border-color .3s, box-shadow .3s;
+}
+
+.input-row input:focus {
+  border-color: #b8870e;
+  box-shadow: 0 0 12px rgba(184,135,14,0.15);
+}
+
+.input-row input::placeholder {
+  color: #4a3820; letter-spacing: 1px;
+}
+
+.input-row button {
+  padding: 12px 28px;
+  background: linear-gradient(180deg, #2a1a08 0%, #1a0e04 100%);
+  border: 1px solid #8b6914;
+  border-radius: 2px;
+  color: #d4a030;
+  font-size: 16px;
+  font-family: 'Ma Shan Zheng', cursive;
+  letter-spacing: 3px; cursor: pointer;
+  transition: all .3s;
+  white-space: nowrap;
+}
+
+.input-row button:hover {
+  background: linear-gradient(180deg, #3a2610 0%, #2a1608 100%);
+  box-shadow: 0 0 16px rgba(184,135,14,0.2);
+  color: #f0c040;
+}
+
+.input-row button:active {
+  transform: scale(0.96);
+}
+
+.result {
+  display: none;
+}
+
+.result.show { display: block; }
+
+.result-inner {
+  background: #0d0806;
+  border: 1px solid #3a2610;
+  border-radius: 2px;
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.hexagram {
+  margin-bottom: 20px;
+}
+
+.hexagram .gua-name {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 42px; color: #d4a030;
+  letter-spacing: 6px;
+}
+
+.hexagram .gua-lines {
+  margin: 12px 0; font-size: 14px; color: #6b5535;
+  letter-spacing: 2px;
+}
+
+.hexagram .gua-num {
+  font-size: 12px; color: #5a4210;
+  letter-spacing: 1px;
+}
+
+.fortune-section {
+  margin: 16px 0; padding: 12px 0;
+  border-top: 1px solid #2a1a08;
+  border-bottom: 1px solid #2a1a08;
+}
+
+.fortune-section .label {
+  font-size: 13px; color: #8b7355;
+  letter-spacing: 3px; margin-bottom: 8px;
+}
+
+.fortune-section .content {
+  font-size: 15px; color: #c4a060;
+  line-height: 1.9; letter-spacing: 1px;
+}
+
+.fortune-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-top: 16px;
+}
+
+.fortune-card {
+  background: #110906;
+  border: 1px solid #2a1a08;
+  border-radius: 2px;
+  padding: 14px 12px;
+}
+
+.fortune-card .card-label {
+  font-size: 12px; color: #6b5535;
+  letter-spacing: 2px; margin-bottom: 6px;
+}
+
+.fortune-card .card-val {
+  font-size: 14px; letter-spacing: 1px;
+  line-height: 1.6;
+}
+
+.card-val.good { color: #8bb060; }
+.card-val.warn { color: #c09040; }
+.card-val.bad { color: #b05040; }
+
+.iching-quote {
+  margin-top: 20px; padding: 12px 16px;
+  border-left: 2px solid #5a4210;
+  text-align: left;
+}
+
+.iching-quote .quote-text {
+  font-size: 14px; color: #8b7355;
+  line-height: 1.8; font-style: italic;
+}
+
+.iching-quote .quote-src {
+  margin-top: 6px; font-size: 12px;
+  color: #5a4210; letter-spacing: 1px;
+}
+
+.meter {
+  display: flex; align-items: center; gap: 8px;
+  margin: 4px 0;
+}
+
+.meter .bar-bg {
+  flex: 1; height: 5px;
+  background: #2a1a08; border-radius: 3px;
+  overflow: hidden;
+}
+
+.meter .bar-fill {
+  height: 100%; border-radius: 3px;
+  transition: width 1s ease;
+}
+
+.meter .bar-fill.high { background: linear-gradient(90deg, #8bb060, #6ba040); }
+.meter .bar-fill.mid { background: linear-gradient(90deg, #c09040, #a07030); }
+.meter .bar-fill.low { background: linear-gradient(90deg, #b05040, #903020); }
+
+.meter .bar-num {
+  font-size: 13px; min-width: 28px;
+  text-align: right; letter-spacing: 1px;
+}
+
+.footer { text-align: center; margin-top: 20px; }
+
+.footer .retry {
+  font-size: 13px; color: #5a4210;
+  letter-spacing: 2px; cursor: pointer;
+  background: none; border: none;
+  font-family: 'Noto Serif SC', serif;
+  transition: color .3s;
+}
+
+.footer .retry:hover { color: #b8870e; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result.show .result-inner { animation: fadeUp .6s ease; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="head">
+    <div class="bagua">☰☷☲☵☳☶☴☱</div>
+    <h1>易经运程</h1>
+    <div class="sub">— 每日一卦 · 趋吉避凶 —</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="input-area">
+    <label>请输入您的姓名</label>
+    <div class="input-row">
+      <input type="text" id="nameInput" placeholder="请输入姓名..." maxlength="20">
+      <button onclick="showFortune()">开 卦</button>
+    </div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="result-inner">
+      <div class="hexagram">
+        <div class="gua-name" id="guaName"></div>
+        <div class="gua-lines" id="guaLines"></div>
+        <div class="gua-num" id="guaNum"></div>
+      </div>
+
+      <div class="fortune-section">
+        <div class="label">今日总运</div>
+        <div class="content" id="overall"></div>
+      </div>
+
+      <div class="fortune-grid">
+        <div class="fortune-card">
+          <div class="card-label">事业 / 学业</div>
+          <div class="card-val" id="career"></div>
+        </div>
+        <div class="fortune-card">
+          <div class="card-label">财运</div>
+          <div class="card-val" id="wealth"></div>
+        </div>
+        <div class="fortune-card">
+          <div class="card-label">感情 / 人际</div>
+          <div class="card-val" id="love"></div>
+        </div>
+        <div class="fortune-card">
+          <div class="card-label">健康</div>
+          <div class="card-val" id="health"></div>
+        </div>
+      </div>
+
+      <div class="iching-quote">
+        <div class="quote-text" id="quote"></div>
+        <div class="quote-src" id="quoteSrc"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <button class="retry" onclick="resetForm()">再起一卦</button>
+  </div>
+</div>
+
+<script>
+const today = new Date();
+const dateStr = `${today.getFullYear()}${today.getMonth()+1}${today.getDate()}`;
+
+function hashCode(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
+
+const trigrams = ['☰乾','☷坤','☲离','☵坎','☳震','☶艮','☴巽','☱兑'];
+const trigramNames = ['乾','坤','离','坎','震','艮','巽','兑'];
+const elements = ['天','地','火','水','雷','山','风','泽'];
+
+const hexagrams = [
+  { name:'乾为天', upper:0, lower:0, desc:'刚健中正，纯阳之象。今日当主动出击，以刚毅之气应对诸事。' },
+  { name:'坤为地', upper:1, lower:1, desc:'柔顺承载，厚德载物。今日宜静不宜动，以柔克刚，守成待时。' },
+  { name:'水雷屯', upper:3, lower:4, desc:'万物始生，困难重重。然生机潜藏，耐心耕耘则后必有获。' },
+  { name:'山水蒙', upper:5, lower:3, desc:'蒙昧初开，求知之时。今日宜虚心求教，不可刚愎自用。' },
+  { name:'水天需', upper:3, lower:0, desc:'待时而动，饮食宴乐。今日宜等待时机，不可急于求成。' },
+  { name:'天水讼', upper:0, lower:3, desc:'争讼不和，宜求中正。今日宜退一步海阔天空，避免口舌之争。' },
+  { name:'地水师', upper:1, lower:3, desc:'师出有名，以正制邪。今日宜以正道行事，方能服众。' },
+  { name:'水地比', upper:3, lower:1, desc:'亲附和合，团结一心。今日宜广结善缘，合则两利。' },
+  { name:'风天小畜', upper:6, lower:0, desc:'小有积蓄，未可大行。今日宜积少成多，勿贪大求快。' },
+  { name:'天泽履', upper:0, lower:7, desc:'履虎尾而不咥，亨。今日行事须谨慎小心，如履薄冰。' },
+  { name:'地天泰', upper:1, lower:0, desc:'天地交泰，万物亨通。今日万事顺遂，宜乘势而上。' },
+  { name:'天地否', upper:0, lower:1, desc:'天地不交，闭塞不通。今日宜韬光养晦，等待转机。' },
+  { name:'天火同人', upper:0, lower:2, desc:'与人同心，其利断金。今日宜团队协作，众志成城。' },
+  { name:'火天大有', upper:2, lower:0, desc:'所有者大，无所不有。今日运势强盛，宜大胆进取。' },
+  { name:'地山谦', upper:1, lower:5, desc:'谦谦君子，卑以自牧。今日宜低调行事，谦逊得福。' },
+  { name:'雷地豫', upper:4, lower:1, desc:'悦乐而动，顺势而为。今日宜顺应时势，不可逆天而行。' },
+];
+
+const quotes = [
+  { text:'天行健，君子以自强不息。', src:'— 《周易·乾卦》' },
+  { text:'地势坤，君子以厚德载物。', src:'— 《周易·坤卦》' },
+  { text:'君子以见善则迁，有过则改。', src:'— 《周易·益卦》' },
+  { text:'二人同心，其利断金；同心之言，其臭如兰。', src:'— 《周易·系辞》' },
+  { text:'穷则变，变则通，通则久。', src:'— 《周易·系辞》' },
+  { text:'君子藏器于身，待时而动。', src:'— 《周易·系辞》' },
+  { text:'善不积，不足以成名；恶不积，不足以灭身。', src:'— 《周易·系辞》' },
+  { text:'君子以言有物而行有恒。', src:'— 《周易·家人卦》' },
+  { text:'君子以思不出其位。', src:'— 《周易·艮卦》' },
+  { text:'君子以顺德，积小以高大。', src:'— 《周易·升卦》' },
+  { text:'知进退存亡而不失其正者，其唯圣人乎。', src:'— 《周易·乾卦》' },
+  { text:'居上位而不骄，在下位而不忧。', src:'— 《周易·乾卦》' },
+  { text:'君子以反身修德。', src:'— 《周易·蹇卦》' },
+  { text:'君子以多识前言往行，以畜其德。', src:'— 《周易·大畜卦》' },
+  { text:'一阴一阳之谓道。', src:'— 《周易·系辞》' },
+];
+
+const careerFortunes = [
+  { level:'good', text:'今日职场如日方升，贵人暗中相助。大胆展示你的能力，上级自会看在眼里。若有新项目，主动请缨可成。' },
+  { level:'good', text:'灵感迸发之日，棘手问题能迎刃而解。团队中你的发言将获得一致认可，领导者之象初显。' },
+  { level:'mid', text:'按部就班，稳扎稳打即可。今日不宜激进求变，守好本职即为上策。若遇争执，退一步反得先机。' },
+  { level:'mid', text:'看似风平浪静，实则暗流涌动。今日宜多观察少表态，静观其变再作打算。老同事的一句话可能暗藏玄机。' },
+  { level:'mid', text:'进退两难之时，不妨回归初心。今日宜回顾过往经验，旧方法或能解新课题。忌好高骛远。' },
+  { level:'warn', text:'今日或有小人作祟，处事多加一分谨慎。重要文件须反复确认，口舌之争能避则避。' },
+  { level:'warn', text:'节奏稍显紊乱，宜放慢脚步重新梳理。今日不宜做重大决策，先把眼前小事处理妥当。' },
+  { level:'bad', text:'今日职途有阻，方案被否、沟通不畅皆有可能。然否极泰来，此为积累经验之时，不必太过沮丧。' },
+];
+
+const wealthFortunes = [
+  { level:'good', text:'财星高照，偏财运佳。意外之财或旧账回款有望。投资宜取稳健策略，见好就收。' },
+  { level:'good', text:'守财有道，今日适合整理财务、制定预算。理财计划今日定下的，执行起来事半功倍。' },
+  { level:'mid', text:'收支平衡，不宜大进大出。今日适合精打细算，拒绝冲动消费。小财运在东南方。' },
+  { level:'mid', text:'财运平平，勿贪横财。今日宜守不宜攻，理财以稳健为主。花小钱请客吃饭，或有意外收获。' },
+  { level:'warn', text:'破财之兆，今日不宜投资与借贷。看好钱包，避免不必要的应酬开销。破小财免大灾，不必太过挂怀。' },
+  { level:'bad', text:'今日财运欠佳，切忌赌博与高风险投资。若有借钱请求，宜三思而行。节俭一日，为明日积福。' },
+];
+
+const loveFortunes = [
+  { level:'good', text:'桃花盛开，单身者今日社交场合易遇有缘人。有伴者感情升温，适宜深谈未来规划。' },
+  { level:'good', text:'心照不宣之日，与伴侣间的默契达到新高度。单身者勿宅，走出去，缘分在西南方向。' },
+  { level:'mid', text:'感情平稳，宜细水长流。今日不宜翻旧账，多夸赞对方一句，胜过千言万语。' },
+  { level:'mid', text:'社交运佳，朋友聚会可结识新友。但须分清友情与暧昧，免生误会。午后来电，或有惊喜。' },
+  { level:'warn', text:'今日易生误会，言语间多加柔和。伴侣情绪敏感之时，一个拥抱胜过道理万千。' },
+  { level:'bad', text:'感情有波折，沟通恐遇冷。今日宜给对方空间，各自冷静后再谈。来日方长，不必急于一时。' },
+];
+
+const healthFortunes = [
+  { level:'good', text:'身心康泰，精力充沛。今日适合锻炼，晨间运动效果尤佳。多饮水，养肝为先。' },
+  { level:'mid', text:'大体安好，唯肩颈须留意。久坐之后起身舒展，喝杯温水，小动作大益处。' },
+  { level:'mid', text:'精神尚可，但肠胃需养护。今日饮食宜清淡，少食辛辣油腻。早睡一刻，胜过补药三碗。' },
+  { level:'warn', text:'今日易疲劳，注意劳逸结合。午后小憩一刻钟，效率倍增。眼干者远眺绿色为佳。' },
+  { level:'bad', text:'今日易感风寒，注意保暖。忌熬夜与暴饮暴食。情绪低落时，出去散散步，天地之气可解忧愁。' },
+];
+
+function generateLines(nameHash, dateHash) {
+  const seed = nameHash ^ dateHash;
+  const lines = [];
+  for (let i = 0; i < 6; i++) {
+    const val = ((seed >> (i * 5)) & 0x1f) % 4;
+    lines.push(val === 0 ? '—' : val === 1 ? '— —' : val === 2 ? '— o → — —' : '— — x → —');
+  }
+  return lines;
+}
+
+function showFortune() {
+  const name = document.getElementById('nameInput').value.trim();
+  if (!name) {
+    document.getElementById('nameInput').focus();
+    return;
+  }
+
+  const nameHash = hashCode(name);
+  const dateHash = hashCode(dateStr);
+  const combined = nameHash ^ dateHash;
+
+  const hIdx = combined % hexagrams.length;
+  const hex = hexagrams[hIdx];
+
+  document.getElementById('guaName').textContent = hex.name;
+  document.getElementById('guaLines').textContent =
+    `${trigrams[hex.upper]} 上 · ${trigrams[hex.lower]} 下`;
+  document.getElementById('guaNum').textContent =
+    `${elements[hex.upper]}上${elements[hex.lower]}下  |  第${hIdx + 1}卦`;
+
+  document.getElementById('overall').textContent = hex.desc;
+
+  const c = careerFortunes[(nameHash + 0) % careerFortunes.length];
+  document.getElementById('career').textContent = c.text;
+  document.getElementById('career').className = 'card-val ' + c.level;
+
+  const w = wealthFortunes[(nameHash + 1) % wealthFortunes.length];
+  document.getElementById('wealth').textContent = w.text;
+  document.getElementById('wealth').className = 'card-val ' + w.level;
+
+  const l = loveFortunes[(nameHash + 2) % loveFortunes.length];
+  document.getElementById('love').textContent = l.text;
+  document.getElementById('love').className = 'card-val ' + l.level;
+
+  const hl = healthFortunes[(nameHash + 3) % healthFortunes.length];
+  document.getElementById('health').textContent = hl.text;
+  document.getElementById('health').className = 'card-val ' + hl.level;
+
+  const q = quotes[combined % quotes.length];
+  document.getElementById('quote').textContent = `「${q.text}」`;
+  document.getElementById('quoteSrc').textContent = q.src;
+
+  document.getElementById('result').classList.add('show');
+  setTimeout(() => {
+    document.getElementById('result').scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }, 100);
+}
+
+function resetForm() {
+  document.getElementById('result').classList.remove('show');
+  document.getElementById('nameInput').value = '';
+  document.getElementById('nameInput').focus();
+  window.scrollTo({ top: 0, behavior:'smooth' });
+}
+
+document.getElementById('nameInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') showFortune();
+});
+</script>
+
+</body>
+</html>
