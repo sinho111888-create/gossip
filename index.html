@@ -286,6 +286,165 @@ body {
   line-height:1.7;
 }
 
+.social-section {
+  margin-top:16px;
+}
+
+.like-bar {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:14px 0;
+}
+
+.like-btn {
+  background:none;
+  border:2px solid #e4c0e8;
+  border-radius:24px;
+  padding:8px 22px;
+  font-size:15px;
+  cursor:pointer;
+  transition:all .3s;
+  font-family:'Noto Serif SC', serif;
+  color:#b870d0;
+  letter-spacing:2px;
+}
+
+.like-btn:hover { border-color:#d080e0; background:#fdf8fe; }
+.like-btn.liked { border-color:#e878a0; background:#fff0f4; color:#e05080; }
+
+.like-count {
+  font-size:12px;
+  color:#b088b8;
+  letter-spacing:1px;
+}
+
+@keyframes heartPop {
+  0% { transform:scale(0); opacity:0; }
+  50% { transform:scale(1.4); opacity:1; }
+  100% { transform:scale(1); opacity:1; }
+}
+
+.heart-float {
+  position:fixed;
+  pointer-events:none;
+  font-size:24px;
+  animation:heartPop .6s ease forwards;
+  z-index:999;
+}
+
+.comment-box {
+  background:#fdf8fe;
+  border-radius:10px;
+  padding:16px 18px;
+  margin-top:12px;
+  border:1px solid #f0d8f0;
+}
+
+.comment-box .cmt-label {
+  font-size:12px;
+  color:#b088b8;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.comment-box input, .comment-box textarea {
+  width:100%;
+  padding:8px 12px;
+  border:1px solid #e8d0f0;
+  border-radius:6px;
+  font-size:13px;
+  font-family:'Noto Serif SC', serif;
+  color:#5e4270;
+  background:#fff;
+  outline:none;
+  margin-bottom:8px;
+  resize:vertical;
+}
+
+.comment-box textarea { min-height:52px; }
+
+.comment-box input:focus, .comment-box textarea:focus {
+  border-color:#c080d8;
+}
+
+.comment-box .cmt-submit {
+  background:linear-gradient(135deg, #b870d8, #9b50b8);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:6px 18px;
+  font-size:12px;
+  cursor:pointer;
+  letter-spacing:2px;
+  font-family:'Noto Serif SC', serif;
+}
+
+.comment-box .cmt-submit:hover { opacity:.9; }
+
+.cmt-list { margin-top:10px; }
+
+.cmt-item {
+  padding:8px 0;
+  border-bottom:1px solid #f4e4f8;
+  font-size:13px;
+}
+
+.cmt-item .cmt-name {
+  font-weight:600;
+  color:#8b5098;
+  margin-right:8px;
+  font-size:12px;
+}
+
+.cmt-item .cmt-msg { color:#5e4270; }
+
+.cmt-item .cmt-time {
+  font-size:10px;
+  color:#b088b8;
+  margin-left:6px;
+}
+
+.tip-toggle {
+  text-align:center;
+  margin-top:12px;
+}
+
+.tip-toggle button {
+  background:none;
+  border:1.5px solid #e4c0e8;
+  border-radius:20px;
+  padding:6px 20px;
+  font-size:12px;
+  color:#b870d0;
+  cursor:pointer;
+  letter-spacing:2px;
+  font-family:'Noto Serif SC', serif;
+  transition:all .25s;
+}
+
+.tip-toggle button:hover { border-color:#d080e0; background:#fdf8fe; }
+
+.tip-qr { display:none; text-align:center; margin-top:10px; }
+
+.tip-qr.show { display:block; }
+
+.tip-qr .qr-placeholder {
+  display:inline-block;
+  width:140px; height:140px;
+  background: linear-gradient(135deg, #f8e8ff, #ffe8f4);
+  border-radius:10px;
+  border:1px dashed #d8b0e0;
+  color:#b088b8;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  letter-spacing:1px;
+  margin:0 auto;
+}
+
 .footer-action {
   text-align:center;
   margin-top:24px;
@@ -744,12 +903,104 @@ function doDivination(){
       <div class="song-vibe">${song.vibe}</div>
       <div class="song-reason">${song.reason}</div>
     </div>
+
+    <div class="social-section">
+      <div class="like-bar">
+        <button class="like-btn" id="likeBtn" onclick="toggleLike(${seed})">❤️ 赞一下</button>
+        <span class="like-count" id="likeCount">${getLikeCount(seed)} 人觉得很赞</span>
+      </div>
+
+      <div class="comment-box">
+        <div class="cmt-label">💬 留下你的卦后感</div>
+        <input type="text" id="cmtName" placeholder="你的名字（选填）" maxlength="20">
+        <textarea id="cmtMsg" placeholder="写点什么..." maxlength="200"></textarea>
+        <button class="cmt-submit" onclick="addComment(${seed})">发 送</button>
+        <div class="cmt-list" id="cmtList">${renderComments(seed)}</div>
+      </div>
+
+      <div class="tip-toggle">
+        <button onclick="toggleTip()">☕ 请作者喝杯咖啡</button>
+        <div class="tip-qr" id="tipQr">
+          <div class="qr-placeholder">赞赏码<br>待上传</div>
+        </div>
+      </div>
+    </div>
   `;
 
   document.getElementById('resultArea').classList.add('show');
   setTimeout(()=>{
     document.getElementById('resultArea').scrollIntoView({behavior:'smooth',block:'start'});
+    // restore like state
+    const liked = localStorage.getItem('gossip_liked_'+seed);
+    const btn = document.getElementById('likeBtn');
+    if(liked){ btn.classList.add('liked'); btn.innerHTML = '❤️ 已赞'; }
   },100);
+}
+
+/* ========== 互动功能 ========== */
+function getLikeCount(seed){
+  const base = (seed % 37) + 8;
+  const liked = localStorage.getItem('gossip_liked_'+seed);
+  return base + (liked ? 1 : 0);
+}
+
+function toggleLike(seed){
+  const key = 'gossip_liked_'+seed;
+  const liked = localStorage.getItem(key);
+  const btn = document.getElementById('likeBtn');
+  const countEl = document.getElementById('likeCount');
+  const base = (seed % 37) + 8;
+
+  if(liked){
+    localStorage.removeItem(key);
+    btn.classList.remove('liked');
+    btn.innerHTML = '❤️ 赞一下';
+    countEl.textContent = base + ' 人觉得很赞';
+  } else {
+    localStorage.setItem(key, '1');
+    btn.classList.add('liked');
+    btn.innerHTML = '❤️ 已赞';
+    countEl.textContent = (base + 1) + ' 人觉得很赞';
+    // Heart float animation
+    const heart = document.createElement('span');
+    heart.className = 'heart-float';
+    heart.textContent = '❤️';
+    heart.style.left = (btn.getBoundingClientRect().left + btn.offsetWidth/2 - 12) + 'px';
+    heart.style.top = (btn.getBoundingClientRect().top - 20) + 'px';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 600);
+  }
+}
+
+function getComments(seed){
+  try { return JSON.parse(localStorage.getItem('gossip_cmts_'+seed) || '[]'); }
+  catch(e) { return []; }
+}
+
+function addComment(seed){
+  const name = document.getElementById('cmtName').value.trim() || '匿名';
+  const msg = document.getElementById('cmtMsg').value.trim();
+  if(!msg) return;
+  const cmts = getComments(seed);
+  cmts.push({ name, msg, time: new Date().toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}) });
+  if(cmts.length > 20) cmts.shift();
+  localStorage.setItem('gossip_cmts_'+seed, JSON.stringify(cmts));
+  document.getElementById('cmtName').value = '';
+  document.getElementById('cmtMsg').value = '';
+  document.getElementById('cmtList').innerHTML = renderComments(seed);
+}
+
+function renderComments(seed){
+  const cmts = getComments(seed);
+  if(!cmts.length) return '<div style="font-size:11px;color:#b088b8;padding:6px 0;">还没有评论，来说两句吧～</div>';
+  return cmts.map(c => `<div class="cmt-item"><span class="cmt-name">${escHtml(c.name)}</span><span class="cmt-msg">${escHtml(c.msg)}</span><span class="cmt-time">${c.time}</span></div>`).join('');
+}
+
+function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function toggleTip(){
+  const qr = document.getElementById('tipQr');
+  qr.classList.toggle('show');
 }
 
 function resetAll(){
