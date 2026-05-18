@@ -940,7 +940,7 @@ function doDivination(){
 
 /* ========== 互动功能 ========== */
 function getLikeCount(seed){
-  const base = (seed % 37) + 8;
+  const base = (Math.abs(seed) % 888) + 128;
   const liked = localStorage.getItem('gossip_liked_'+seed);
   return base + (liked ? 1 : 0);
 }
@@ -950,7 +950,7 @@ function toggleLike(seed){
   const liked = localStorage.getItem(key);
   const btn = document.getElementById('likeBtn');
   const countEl = document.getElementById('likeCount');
-  const base = (seed % 37) + 8;
+  const base = (Math.abs(seed) % 888) + 128;
 
   if(liked){
     localStorage.removeItem(key);
