@@ -490,9 +490,9 @@ function triIdx(rem){
 }
 
 function meiHuaChange(n1,n2){
-  const r1 = n1%8 || 8, r2 = n2%8 || 8;
+  const r1 = n1%8, r2 = n2%8;
   const upper = triIdx(r1), lower = triIdx(r2);
-  const dongYao = ((n1+n2)%6);
+  const dongYao = (n1+n2)%6;
   const dongYao1 = dongYao===0?6:dongYao;
   return {upper,lower,dongYao:dongYao1,dongIdx:dongYao1-1};
 }
