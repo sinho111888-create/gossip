@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日一占</title>
+<title>万物皆可卦</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;600;700&display=swap');
 
@@ -27,9 +27,9 @@ body {
 
 .header h1 {
   font-family:'Ma Shan Zheng', cursive;
-  font-size:44px;
+  font-size:48px;
   color:#8b3a9e;
-  letter-spacing:6px;
+  letter-spacing:8px;
   margin-bottom:6px;
 }
 
@@ -120,84 +120,28 @@ body {
 .result-area {
   display:none;
   width:100%;
-  max-width:680px;
+  max-width:600px;
 }
 
 .result-area.show { display:block; }
 
-.method-card {
+.result-card {
   background:#fff;
   border-radius:14px;
-  padding:24px 28px;
+  padding:28px 32px;
   margin-bottom:16px;
   box-shadow:0 1px 12px rgba(130,60,160,0.05);
   border:1px solid #ecd8f0;
-  transition:all .3s;
 }
 
-.method-card:hover {
-  box-shadow:0 4px 24px rgba(130,60,160,0.1);
+.result-card h2 {
+  font-family:'Ma Shan Zheng', cursive;
+  font-size:22px;
+  color:#8b3a9e;
+  letter-spacing:3px;
+  margin-bottom:18px;
+  text-align:center;
 }
-
-.method-head {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:14px;
-  padding-bottom:10px;
-  border-bottom:1px solid #f4e4f8;
-}
-
-.method-head .icon {
-  width:32px; height:32px;
-  border-radius:8px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:16px;
-}
-
-.method-head h2 {
-  font-size:17px;
-  font-weight:600;
-  color:#5b2870;
-  letter-spacing:2px;
-}
-
-.method-head .badge {
-  font-size:10px;
-  padding:2px 8px;
-  border-radius:20px;
-  letter-spacing:1px;
-  font-weight:600;
-}
-
-.badge-ji { background:#e8f5e0; color:#5b9a3a; }
-.badge-xiong { background:#fde8e8; color:#c84848; }
-.badge-zhong { background:#fef3e0; color:#b87828; }
-
-.method-body {
-  font-size:14px;
-  line-height:1.8;
-  color:#5e4270;
-}
-
-.method-body .line-row {
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:4px 0;
-  font-size:15px;
-}
-
-.method-body .line-row .yao {
-  font-size:20px;
-  min-width:80px;
-  letter-spacing:2px;
-}
-
-.yao-change { color:#d63384; font-weight:700; }
-.yao-stable { color:#6b4d78; }
 
 .gua-display {
   text-align:center;
@@ -209,7 +153,7 @@ body {
 
 .gua-display .big-name {
   font-family:'Ma Shan Zheng', cursive;
-  font-size:32px;
+  font-size:36px;
   color:#8b3a9e;
   letter-spacing:4px;
 }
@@ -221,25 +165,47 @@ body {
   letter-spacing:1px;
 }
 
-.method-body .sub-label {
+.arrow-row {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:8px 0;
+  font-size:13px;
+  color:#a878b8;
+}
+
+.desc-text {
+  font-size:14px;
+  line-height:1.9;
+  color:#5e4270;
+  margin:8px 0 14px;
+}
+
+.section-label {
   font-size:12px;
   color:#b088b8;
   letter-spacing:2px;
-  margin-top:10px;
-  margin-bottom:4px;
+  margin:14px 0 6px;
+}
+
+.section-text {
+  font-size:14px;
+  color:#5e4270;
+  line-height:1.8;
 }
 
 .fortune-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:8px;
+  gap:10px;
   margin-top:10px;
 }
 
 .fortune-card {
   background:#fdf8fe;
   border-radius:8px;
-  padding:10px 12px;
+  padding:12px 14px;
 }
 
 .fortune-card .card-label {
@@ -255,38 +221,48 @@ body {
   line-height:1.6;
 }
 
-.arrow-row {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  margin:8px 0;
-  font-size:14px;
-  color:#a878b8;
+.music-card {
+  background: linear-gradient(135deg, #fdf4ff, #fff0f8);
+  border-radius:12px;
+  padding:20px 24px;
+  margin-top:18px;
+  border:1px solid #f0d0f0;
+  text-align:center;
 }
 
-.xiaoliuren-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:8px;
+.music-card .music-icon {
+  font-size:36px;
+  margin-bottom:8px;
 }
 
-.xiaoliuren-grid .sl-item {
+.music-card .song-title {
+  font-family:'Ma Shan Zheng', cursive;
+  font-size:22px;
+  color:#a040c0;
+  letter-spacing:2px;
+}
+
+.music-card .song-artist {
   font-size:13px;
-  padding:6px 10px;
-  background:#fdf8fe;
-  border-radius:8px;
+  color:#a878b8;
+  margin:4px 0 8px;
 }
 
-.sl-item .sl-label {
+.music-card .song-vibe {
+  display:inline-block;
   font-size:11px;
-  color:#a880b8;
+  color:#8b5098;
+  background:#f8e8ff;
+  padding:3px 12px;
+  border-radius:12px;
   letter-spacing:1px;
 }
 
-.method-body p {
-  margin:4px 0;
+.music-card .song-reason {
+  font-size:12px;
+  color:#9b7aaa;
+  margin-top:10px;
+  line-height:1.6;
 }
 
 .footer-action {
@@ -318,28 +294,25 @@ body {
   to { opacity:1; transform:translateY(0); }
 }
 
-.result-area.show .method-card {
+.result-area.show .result-card {
   animation:fadeUp .5s ease both;
 }
-.result-area.show .method-card:nth-child(1) { animation-delay:0s; }
-.result-area.show .method-card:nth-child(2) { animation-delay:.08s; }
-.result-area.show .method-card:nth-child(3) { animation-delay:.16s; }
-.result-area.show .method-card:nth-child(4) { animation-delay:.24s; }
 
 @media (max-width:480px) {
   body { padding:24px 12px 40px; }
   .num-row input { width:72px; font-size:18px; padding:10px 0; }
   .num-row button { padding:10px 20px; font-size:15px; }
-  .method-card { padding:16px 18px; }
-  .xiaoliuren-grid { grid-template-columns:1fr; }
+  .result-card { padding:20px 18px; }
+  .fortune-grid { grid-template-columns:1fr; }
+  .header h1 { font-size:38px; }
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>每日一占</h1>
-  <div class="sub">— 小六壬 · 梅花易数 · 六爻 · 大六壬 —</div>
+  <h1>万物皆可卦</h1>
+  <div class="sub">— 梅花易数 · 心中有数 万物有卦 —</div>
 </div>
 
 <div class="input-card">
@@ -353,18 +326,14 @@ body {
 </div>
 
 <div class="result-area" id="resultArea">
-  <div class="method-card" id="cardXiaoLiuRen"></div>
-  <div class="method-card" id="cardMeiHua"></div>
-  <div class="method-card" id="cardLiuYao"></div>
-  <div class="method-card" id="cardDaLiuRen"></div>
-
+  <div class="result-card" id="resultCard"></div>
   <div class="footer-action">
-    <button onclick="resetAll()">再占一卦</button>
+    <button onclick="resetAll()">再起一卦</button>
   </div>
 </div>
 
 <script>
-/* ========== TRIGRAMS & HEXAGRAMS ========== */
+/* ========== 八卦 ========== */
 const baGua = [
   { idx:0, name:'乾', element:'金', symbol:'☰', nature:'天', dir:'西北', body:'头', desc:'刚健' },
   { idx:1, name:'坤', element:'土', symbol:'☷', nature:'地', dir:'西南', body:'腹', desc:'柔顺' },
@@ -376,133 +345,136 @@ const baGua = [
   { idx:7, name:'兑', element:'金', symbol:'☱', nature:'泽', dir:'西',   body:'口', desc:'悦乐' },
 ];
 
+/* ========== 六十四卦 ========== */
 const hex64 = [
-  [0,0, '乾为天','充满干劲的一天！主动出击会有好结果，别犹豫，想到就去做。'],
-  [1,1, '坤为地','今天适合当个倾听者，以柔克刚。别急着出头，沉住气反而更稳。'],
-  [3,4, '水雷屯','万事开头难，但别怕，生机已经在路上了。再坚持一下就能看到转机。'],
-  [5,3, '山水蒙','今天适合多请教别人，别自己闷头想。虚心问一句，可能少走很多弯路。'],
-  [3,0, '水天需','时机还没到，别急。先吃好喝好养足精神，该出手时自然会知道。'],
-  [0,3, '天水讼','今天容易跟人起争执，退一步海阔天空。赢了道理输了关系不划算。'],
-  [1,3, '地水师','做事要有理有据，名正言顺才能服人。今天靠正道取胜，别耍小聪明。'],
-  [3,1, '水地比','适合聚会交友的一天，多跟人聊聊，互相帮忙比单打独斗强太多。'],
-  [6,0, '风天小畜','小有收获但还没到爆发的时候。别贪心，一点一点攒，积少成多。'],
-  [0,7, '天泽履','今天每一步都要小心，像走薄冰一样。谨慎不是胆小，是聪明。'],
-  [1,0, '地天泰','好运来了！今天做什么都顺，趁热打铁，别浪费了好时机。'],
-  [0,1, '天地否','今天可能感觉什么都卡住了。别硬来，低调蛰伏一下，转机不远。'],
-  [0,2, '天火同人','跟人搭伙做事效果翻倍。今天别单干，找对人合作，力量会大很多。'],
-  [2,0, '火天大有','运势强到不行的一天！大胆去争取你想要的，不用太谦虚。'],
-  [1,5, '地山谦','把姿态放低一点，反而能得到更多。谦虚不是软弱，是智慧。'],
-  [4,1, '雷地豫','顺着势头走就好，别逆着来。今天跟着感觉走，比硬撑更有效。'],
-  [7,4, '泽雷随','随机应变的一天。别太执着于计划，灵活调整反而更顺。'],
-  [5,6, '山风蛊','有些老问题该处理了。今天适合清理整顿、拨乱反正。'],
-  [1,7, '地泽临','凡事亲自过问一下比较好，别当甩手掌柜。到场和不到场差别很大。'],
-  [6,1, '风地观','今天适合当个观察者，多看看别人怎么做。看清楚再行动不迟。'],
-  [2,4, '火雷噬嗑','有什么卡住的事情今天适合解决掉。快刀斩乱麻，别拖着。'],
-  [5,2, '山火贲','外表好看固然重要，但里子更关键。今天别太注重面子功夫。'],
-  [5,1, '山地剥','感觉有人在背后搞小动作？今天低调一点，别给人家可乘之机。'],
-  [1,4, '地雷复','冬天过去了，春天要来了。之前不如意的事开始好转，再等等。'],
-  [0,4, '天雷无妄','实事求是的一天，别想太多有的没的。老老实实做事就是最好的策略。'],
-  [5,0, '山天大畜','厚积薄发的时候到了。你之前的积累今天可能会派上大用场。'],
-  [5,4, '山雷颐','好好吃饭、好好休息，今天先把自己的状态调整好，别的事先放一放。'],
-  [7,6, '泽风大过','非常时期用非常手段。今天可能需要拿出一点魄力，做平时不敢做的决定。'],
-  [3,3, '坎为水','今天可能会遇到一些难处，但别怕。稳住心态，诚信待人，难关能过去。'],
-  [2,2, '离为火','光明磊落的一天。坦坦荡荡做事，自然会有人愿意帮你、跟着你。'],
-  [7,5, '泽山咸','心有灵犀的感觉很强。今天适合谈感情、谈合作，彼此都能get到对方的点。'],
-  [4,6, '雷风恒','坚持就是胜利。今天别三心二意，认定的事就做下去，时间会给你答案。'],
-  [0,5, '天山遁','有时候退一步才是聪明。今天不适合硬碰，暂时回避一下没什么丢脸的。'],
-  [4,0, '雷天大壮','气势很足的一天！但别太冲动，力量用在正道上的效果才最好。'],
-  [2,1, '火地晋','往上走的感觉！今天事业上有好消息，努力开始被看到。'],
-  [1,2, '地火明夷','光芒被遮住了，有点憋屈。但坚持做对的事，黑暗总会过去的。'],
-  [6,2, '风火家人','家里的事优先。今天适合陪陪家人、整理下家务，家和万事兴。'],
-  [2,7, '火泽睽','跟人容易看法不同，别硬掰。小事别较真，求同存异就好。'],
-  [3,5, '水山蹇','前路有点难走，需要找一个能帮你的人。别自己硬扛，开口求助不丢人。'],
-  [4,3, '雷水解','困境解除！之前的麻烦事开始有眉目了，动作快一点，趁热解决掉。'],
-  [5,7, '山泽损','有舍才有得。今天可能需要做一些让步，短期亏一点，长期是赚的。'],
-  [6,4, '风雷益','付出会有回报的一天。帮助别人就是帮助自己，今天适合多做善事。'],
-  [7,0, '泽天夬','该做决定了，别犹豫。快刀斩乱麻，当断则断。'],
-  [0,6, '天风姤','可能会遇到意想不到的人或事。保持开放心态，惊喜就在转角。'],
-  [7,1, '泽地萃','人多力量大。今天适合组织聚会或团队活动，聚集大家的力量。'],
-  [1,6, '地风升','步步高升的势头。今天的一小步，可能是未来的一大步，加油。'],
-  [7,3, '泽水困','感觉被困住了？别急，困住你的往往是自己。换个角度想想，路会出来的。'],
-  [3,6, '水风井','有些东西是变不了的，但你可以改变自己用它的方式。换个方法试试。'],
-  [7,2, '泽火革','改变的时候到了！别抗拒变化，顺其自然，新的会比旧的好。'],
-  [2,6, '火风鼎','革故鼎新。把旧的理顺了，新计划可以开始执行了，时机刚好。'],
-  [4,4, '震为雷','会有点突发状况，但别慌。越是紧张的时候越要稳住，你能处理好。'],
-  [5,5, '艮为山','该停的时候就停。今天别给自己加太多戏，适可而止，休息也是一种智慧。'],
-  [6,5, '风山渐','慢慢来比较快。今天的事急不得，按步骤一步一步走反而更顺利。'],
-  [4,7, '雷泽归妹','开始一件事之前想清楚，别光看开头好看。谨慎选择，才能善始善终。'],
-  [4,2, '雷火丰','丰收的一天，但好东西太多也容易出问题。适可而止，别贪杯。'],
-  [2,5, '火山旅','人在旅途的感觉。今天可能有些不稳定，但保持平常心，很快会好。'],
-  [6,6, '巽为风','随风而行，柔一点反而能到更远的地方。今天别太刚硬。'],
-  [7,7, '兑为泽','开心的一天！多跟朋友聊聊天，说说话，快乐是会传染的。'],
-  [6,3, '风水涣','之前一团乱的事情开始变清晰了，散开之后反而看得更明白。'],
-  [3,7, '水泽节','凡事有度。今天要管住自己，别过度消费、别说过头话，节制就是福。'],
-  [6,7, '风泽中孚','真诚最能打动人。今天用真心待人，别人能感受到，好事自然来。'],
-  [4,5, '雷山小过','小事可以稍微冒进一点，大事还是稳着来。有点小偏差没什么大不了。'],
-  [3,2, '水火既济','事情快办成了，但越到收尾越要小心。善始善终，别在最后掉链子。'],
-  [2,3, '火水未济','事情还没完，别急着下结论。再坚持一下，就差最后一哆嗦了。'],
+  [0,0,'乾为天','充满干劲的一天！主动出击会有好结果，别犹豫，想到就去做。'],
+  [1,1,'坤为地','今天适合当个倾听者，以柔克刚。别急着出头，沉住气反而更稳。'],
+  [3,4,'水雷屯','万事开头难，但别怕，生机已经在路上了。再坚持一下就能看到转机。'],
+  [5,3,'山水蒙','今天适合多请教别人，别自己闷头想。虚心问一句，可能少走很多弯路。'],
+  [3,0,'水天需','时机还没到，别急。先吃好喝好养足精神，该出手时自然会知道。'],
+  [0,3,'天水讼','今天容易跟人起争执，退一步海阔天空。赢了道理输了关系不划算。'],
+  [1,3,'地水师','做事要有理有据，名正言顺才能服人。今天靠正道取胜，别耍小聪明。'],
+  [3,1,'水地比','适合聚会交友的一天，多跟人聊聊，互相帮忙比单打独斗强太多。'],
+  [6,0,'风天小畜','小有收获但还没到爆发的时候。别贪心，一点一点攒，积少成多。'],
+  [0,7,'天泽履','今天每一步都要小心，像走薄冰一样。谨慎不是胆小，是聪明。'],
+  [1,0,'地天泰','好运来了！今天做什么都顺，趁热打铁，别浪费了好时机。'],
+  [0,1,'天地否','今天可能感觉什么都卡住了。别硬来，低调蛰伏一下，转机不远。'],
+  [0,2,'天火同人','跟人搭伙做事效果翻倍。今天别单干，找对人合作，力量会大很多。'],
+  [2,0,'火天大有','运势强到不行的一天！大胆去争取你想要的，不用太谦虚。'],
+  [1,5,'地山谦','把姿态放低一点，反而能得到更多。谦虚不是软弱，是智慧。'],
+  [4,1,'雷地豫','顺着势头走就好，别逆着来。今天跟着感觉走，比硬撑更有效。'],
+  [7,4,'泽雷随','随机应变的一天。别太执着于计划，灵活调整反而更顺。'],
+  [5,6,'山风蛊','有些老问题该处理了。今天适合清理整顿、拨乱反正。'],
+  [1,7,'地泽临','凡事亲自过问一下比较好，别当甩手掌柜。到场和不到场差别很大。'],
+  [6,1,'风地观','今天适合当个观察者，多看看别人怎么做。看清楚再行动不迟。'],
+  [2,4,'火雷噬嗑','有什么卡住的事情今天适合解决掉。快刀斩乱麻，别拖着。'],
+  [5,2,'山火贲','外表好看固然重要，但里子更关键。今天别太注重面子功夫。'],
+  [5,1,'山地剥','感觉有人在背后搞小动作？今天低调一点，别给人家可乘之机。'],
+  [1,4,'地雷复','冬天过去了，春天要来了。之前不如意的事开始好转，再等等。'],
+  [0,4,'天雷无妄','实事求是的一天，别想太多有的没的。老老实实做事就是最好的策略。'],
+  [5,0,'山天大畜','厚积薄发的时候到了。你之前的积累今天可能会派上大用场。'],
+  [5,4,'山雷颐','好好吃饭、好好休息，今天先把自己的状态调整好，别的事先放一放。'],
+  [7,6,'泽风大过','非常时期用非常手段。今天可能需要拿出一点魄力，做平时不敢做的决定。'],
+  [3,3,'坎为水','今天可能会遇到一些难处，但别怕。稳住心态，诚信待人，难关能过去。'],
+  [2,2,'离为火','光明磊落的一天。坦坦荡荡做事，自然会有人愿意帮你、跟着你。'],
+  [7,5,'泽山咸','心有灵犀的感觉很强。今天适合谈感情、谈合作，彼此都能get到对方的点。'],
+  [4,6,'雷风恒','坚持就是胜利。今天别三心二意，认定的事就做下去，时间会给你答案。'],
+  [0,5,'天山遁','有时候退一步才是聪明。今天不适合硬碰，暂时回避一下没什么丢脸的。'],
+  [4,0,'雷天大壮','气势很足的一天！但别太冲动，力量用在正道上的效果才最好。'],
+  [2,1,'火地晋','往上走的感觉！今天事业上有好消息，努力开始被看到。'],
+  [1,2,'地火明夷','光芒被遮住了，有点憋屈。但坚持做对的事，黑暗总会过去的。'],
+  [6,2,'风火家人','家里的事优先。今天适合陪陪家人、整理下家务，家和万事兴。'],
+  [2,7,'火泽睽','跟人容易看法不同，别硬掰。小事别较真，求同存异就好。'],
+  [3,5,'水山蹇','前路有点难走，需要找一个能帮你的人。别自己硬扛，开口求助不丢人。'],
+  [4,3,'雷水解','困境解除！之前的麻烦事开始有眉目了，动作快一点，趁热解决掉。'],
+  [5,7,'山泽损','有舍才有得。今天可能需要做一些让步，短期亏一点，长期是赚的。'],
+  [6,4,'风雷益','付出会有回报的一天。帮助别人就是帮助自己，今天适合多做善事。'],
+  [7,0,'泽天夬','该做决定了，别犹豫。快刀斩乱麻，当断则断。'],
+  [0,6,'天风姤','可能会遇到意想不到的人或事。保持开放心态，惊喜就在转角。'],
+  [7,1,'泽地萃','人多力量大。今天适合组织聚会或团队活动，聚集大家的力量。'],
+  [1,6,'地风升','步步高升的势头。今天的一小步，可能是未来的一大步，加油。'],
+  [7,3,'泽水困','感觉被困住了？别急，困住你的往往是自己。换个角度想想，路会出来的。'],
+  [3,6,'水风井','有些东西是变不了的，但你可以改变自己用它的方式。换个方法试试。'],
+  [7,2,'泽火革','改变的时候到了！别抗拒变化，顺其自然，新的会比旧的好。'],
+  [2,6,'火风鼎','革故鼎新。把旧的理顺了，新计划可以开始执行了，时机刚好。'],
+  [4,4,'震为雷','会有点突发状况，但别慌。越是紧张的时候越要稳住，你能处理好。'],
+  [5,5,'艮为山','该停的时候就停。今天别给自己加太多戏，适可而止，休息也是一种智慧。'],
+  [6,5,'风山渐','慢慢来比较快。今天的事急不得，按步骤一步一步走反而更顺利。'],
+  [4,7,'雷泽归妹','开始一件事之前想清楚，别光看开头好看。谨慎选择，才能善始善终。'],
+  [4,2,'雷火丰','丰收的一天，但好东西太多也容易出问题。适可而止，别贪杯。'],
+  [2,5,'火山旅','人在旅途的感觉。今天可能有些不稳定，但保持平常心，很快会好。'],
+  [6,6,'巽为风','随风而行，柔一点反而能到更远的地方。今天别太刚硬。'],
+  [7,7,'兑为泽','开心的一天！多跟朋友聊聊天，说说话，快乐是会传染的。'],
+  [6,3,'风水涣','之前一团乱的事情开始变清晰了，散开之后反而看得更明白。'],
+  [3,7,'水泽节','凡事有度。今天要管住自己，别过度消费、别说过头话，节制就是福。'],
+  [6,7,'风泽中孚','真诚最能打动人。今天用真心待人，别人能感受到，好事自然来。'],
+  [4,5,'雷山小过','小事可以稍微冒进一点，大事还是稳着来。有点小偏差没什么大不了。'],
+  [3,2,'水火既济','事情快办成了，但越到收尾越要小心。善始善终，别在最后掉链子。'],
+  [2,3,'火水未济','事情还没完，别急着下结论。再坚持一下，就差最后一哆嗦了。'],
 ];
 
-function findHex(upper,lower) {
-  for (let h of hex64) {
-    if (h[0]===upper && h[1]===lower) return h;
-  }
-  const u=baGua[upper], l=baGua[lower];
-  return [upper,lower, l.name+u.name, `${l.desc}同时${u.desc}。上卦为${u.nature}、下卦为${l.nature}，合而观之。`];
-}
-
-/* ========== 小六壬 DATA ========== */
-const xiaoLiuRen = [
-  { name:'大安', level:'ji', wuxing:'木', desc:'平安稳定的一天。想做的事基本能成，丢了东西也容易找回来。整体运势不错，适合按计划行事。', career:'工作稳稳当当，做好分内的事就行，不用折腾。', wealth:'财运平稳，适合存钱，别乱投资。', love:'感情和睦，平平淡淡就是最好的状态。', health:'身体不错，注意别熬夜伤肝。', dir:'东方' },
-  { name:'留连', level:'xiong', wuxing:'水', desc:'事情容易拖拉反复，急也没用。今天不适合赶进度，越急越慢，不如先放一放。', career:'工作上有拖延，沉住气，别在这时候冲动换工作。', wealth:'财运不太好，小心花钱，别借钱出去。', love:'关系有点暧昧不明，先保持距离观察一下。', health:'体内湿气重的话会不舒服，注意保暖护脾胃。', dir:'北方' },
-  { name:'速喜', level:'ji', wuxing:'火', desc:'好消息要来啦！想做的事能很快有结果，喜事临门的感觉。今天干什么都顺手。', career:'有升职或者跳槽的好机会，看到了就别犹豫。', wealth:'偏财运不错，可能有意外收入。', love:'桃花运很旺！单身的多出去走走，有机会碰到对的人。', health:'心情好身体就好，但别太兴奋了影响睡眠。', dir:'南方' },
-  { name:'赤口', level:'xiong', wuxing:'金', desc:'小心口舌是非！今天少说话多做事，别跟人争。说多错多，沉默反而是最好的保护。', career:'防小人！工作中能闭嘴就闭嘴，别卷入口舌之争。', wealth:'有破财的风险，别借钱也别做担保。', love:'容易跟另一半吵架，说话前先冷静三秒。', health:'嗓子、呼吸道容易不舒服，多喝水少说话。', dir:'西方' },
-  { name:'小吉', level:'ji', wuxing:'木', desc:'虽然不是什么大好事，但也挺开心的。小小的喜乐，小小的收获，知足就好。', career:'适合跟人合作，依靠团队的力量把事情做好。', wealth:'有小钱进账，够花就行，见好就收。', love:'关系在往好的方向发展，保持下去。', health:'整体还好，注意肠胃，别乱吃东西。', dir:'东方' },
-  { name:'空亡', level:'xiong', wuxing:'土', desc:'今天做事容易白忙一场。别抱太大期望，安安静静待着反而不会失望。不求有功，但求无过。', career:'方案容易被否，工作不太顺。别硬推，先苟着。', wealth:'花钱的地方多，收入却没跟上，别投资别赌博。', love:'缘分这东西急不来，今天随缘就好，别强求。', health:'脾胃不太好，情绪也容易低落，吃点清淡的。', dir:'中央' },
-];
-
-/* ========== 大六壬 DATA ========== */
-const tianJiang = [
-  { name:'贵人', level:'ji', wuxing:'土', desc:'今天有贵人运！遇到困难会有人出手帮你。放轻松，事情比你想的要顺利。', wealth:'有人帮衬，合作生财。今天适合通过人脉获取收益，别自己闷头干。', love:'有贵人牵线的缘分，或者伴侣今天特别体贴。关系中有温暖的力量在帮你。' },
-  { name:'腾蛇', level:'xiong', wuxing:'火', desc:'小心被骗或被吓到。今天听到的离谱传言别轻信，眼见为实。', wealth:'别信天上掉馅饼的事，今天骗局多。投资理财要格外谨慎，捂紧钱包。', love:'容易疑神疑鬼，或者被不实信息干扰。别乱猜对方的心思，直接问比瞎想强。' },
-  { name:'朱雀', level:'zhong', wuxing:'火', desc:'容易有口舌是非，但文笔表达倒是不错。说话收着点，写东西倒是可以大胆发挥。', wealth:'靠嘴皮子和笔杆子赚钱的一天。适合谈业务、写方案，但签合同要仔细看条款。', love:'容易拌嘴吵架，但也适合写情书发长文表白。甜言蜜语可以说，别说过头话。' },
-  { name:'六合', level:'ji', wuxing:'木', desc:'合作运、桃花运双双在线。今天特别适合谈合作、见对象，气氛会很融洽。', wealth:'合作生财！跟人合伙比单干强。今天适合谈生意、签合作，对方会很好说话。', love:'桃花爆棚！单身的多出去社交，有伴的适合约会，氛围感拉满。' },
-  { name:'勾陈', level:'xiong', wuxing:'土', desc:'小心跟人起争执，尤其是关于房子合同之类的事。今天别跟人争，低调做人。', wealth:'不动产和合同方面容易出问题。买房、租房、签约的事今天先缓一缓。', love:'容易因为房子、家庭的事跟对方吵架。冷静一点，别把小事闹大。' },
-  { name:'青龙', level:'ji', wuxing:'木', desc:'大吉大利的一天！财运桃花都在线，想办的事基本都能成，趁势而上吧。', wealth:'财运超旺！正财偏财都有机会，今天适合大胆出击，但也别太贪。', love:'魅力爆表的一天，走到哪都受欢迎。单身容易遇到优质对象，有伴的感情升温。' },
-  { name:'天空', level:'xiong', wuxing:'土', desc:'小心空欢喜一场。今天别对任何事报太大希望，踏踏实实做事比什么都强。', wealth:'别指望意外之财，今天不适合投资和赌博。捂好钱包，别被人画大饼忽悠了。', love:'别对感情抱过高期待，对方可能让你失望。降低预期，反而会有惊喜。' },
-  { name:'白虎', level:'xiong', wuxing:'金', desc:'出门注意安全！开车慢一点，别跟人起冲突。心平气和，平安最重要。', wealth:'有突然破财的风险，比如罚单、赔偿。今天花钱消灾，别心疼，安全第一。', love:'脾气容易暴躁，别跟伴侣硬碰硬。今天不适合谈严肃话题，容易吵起来。' },
-  { name:'太常', level:'ji', wuxing:'土', desc:'今天适合享受生活。好好吃顿饭、犒劳一下自己，生活本来就该有张有弛。', wealth:'花钱享受的一天，但花的值得。别抠门，适当犒劳自己，心情好什么都顺。', love:'平淡温馨的一天。适合一起吃饭、逛街、看电影，不折腾就是最好的浪漫。' },
-  { name:'玄武', level:'xiong', wuxing:'水', desc:'注意保管财物和个人信息。今天容易丢东西或者信息泄露，重要东西看紧点。', wealth:'容易丢钱、被骗、被盗。出门别带太多现金，密码和账号看紧点。', love:'小心感情中的欺骗和隐瞒。如果感觉对方有什么不对劲，多留个心眼。' },
-  { name:'太阴', level:'ji', wuxing:'金', desc:'今天适合暗中谋划，别声张。想做的事先偷偷准备，事成之前谁都别说。', wealth:'闷声发大财的一天。赚钱的事先别到处说，偷偷布局，后面会有回报。', love:'暧昧期的试探、暗恋中的小动作。今天适合偷偷观察对方，别急着表白。' },
-  { name:'天后', level:'ji', wuxing:'水', desc:'会有女性贵人来帮你。今天温柔一点、随和一点，以柔克刚效果最好。', wealth:'女性朋友或同事会带来财运上的好消息。别拒绝别人的帮助和建议。', love:'温柔是最大的武器。今天对伴侣软一点、柔一点，效果比吵架好一百倍。' },
-];
+/* ========== 音乐推荐库 ========== */
+const songDB = {
+  '乾': [
+    { title:'沧海一声笑', artist:'许冠杰', vibe:'豪迈洒脱', reason:'乾为天，刚健中正。这首歌的江湖侠气正好配你今天的势不可挡。' },
+    { title:'男儿当自强', artist:'林子祥', vibe:'气势磅礴', reason:'乾卦主刚健，自强不息。这歌里那股不服输的劲儿，就是你今天的底色。' },
+    { title:'我的天空', artist:'南征北战', vibe:'热血向上', reason:'乾象纯阳，能量拉满。听这首歌，把今天的冲劲全部释放出来。' },
+  ],
+  '坤': [
+    { title:'风吹麦浪', artist:'李健', vibe:'温柔宁静', reason:'坤为地，厚德载物。像大地一样沉稳温柔，今天适合听点治愈的歌。' },
+    { title:'稳稳的幸福', artist:'陈奕迅', vibe:'踏实温暖', reason:'坤卦主承载包容。你今天的运势就是稳稳当当，不急不躁刚刚好。' },
+    { title:'稻香', artist:'周杰伦', vibe:'回归本真', reason:'坤象大地，回归的根本。听这首歌回到最朴素的状态，反而最有力量。' },
+  ],
+  '震': [
+    { title:'追梦赤子心', artist:'GALA', vibe:'热血沸腾', reason:'震为雷，一鸣惊人。今天需要一点爆发力，这首歌能给你充电。' },
+    { title:'起风了', artist:'买辣椒也用券', vibe:'迎风而上', reason:'震动不息，万象更新。像风一样迎接今天的变化，一切都会好起来。' },
+    { title:'夜空中最亮的星', artist:'逃跑计划', vibe:'坚定前行', reason:'震卦的动能在你身上，今天不被困难吓倒，你就是那颗最亮的星。' },
+  ],
+  '巽': [
+    { title:'起风了', artist:'买辣椒也用券', vibe:'随风而行', reason:'巽为风，无孔不入。用柔的方式解决硬的问题，这首歌的轻盈感刚好给你灵感。' },
+    { title:'风吹过', artist:'陈粒', vibe:'空灵洒脱', reason:'风行天下，来去自如。别太执着，像风一样自由，答案自会出现。' },
+    { title:'旅途', artist:'朴树', vibe:'随风飘荡', reason:'巽卦主入微通透，适合随风而行。朴树的洒脱最适合你今天的心境。' },
+  ],
+  '坎': [
+    { title:'默', artist:'那英', vibe:'深沉内省', reason:'坎为水，深不可测。今天可能有心事暗流涌动，听这首歌梳理一下。' },
+    { title:'匆匆那年', artist:'王菲', vibe:'回忆流转', reason:'水象流动，往事如烟。坎卦提醒你小心暗礁，但也不必太过紧张。' },
+    { title:'空白格', artist:'蔡健雅', vibe:'深沉治愈', reason:'坎中带险，需要静心。这首歌的空灵感能帮你在不确定中找到平静。' },
+  ],
+  '离': [
+    { title:'孤勇者', artist:'陈奕迅', vibe:'燃爆全场', reason:'离为火，光明普照。今天你就是人群中最亮的那一个，不必低调。' },
+    { title:'光年之外', artist:'邓紫棋', vibe:'璀璨夺目', reason:'离卦主光明热情。这首歌的力量感刚好配你今天的光芒四射。' },
+    { title:'篇章', artist:'张韶涵/王赫野', vibe:'昂扬向前', reason:'火在天上，大有之象。翻开新的篇章，今天做什么都会发光。' },
+  ],
+  '艮': [
+    { title:'南山南', artist:'马頔', vibe:'安静沉淀', reason:'艮为山，知止不殆。今天适合停下来，听一首安静的歌，好好想想。' },
+    { title:'山丘', artist:'李宗盛', vibe:'沉稳通透', reason:'山象静止，越过山丘才懂。李宗盛的沧桑感刚好配你今天的内省。' },
+    { title:'平凡之路', artist:'朴树', vibe:'沉稳前行', reason:'艮者止也，适可而止。平凡的路走到深处，自有它的不平凡。' },
+  ],
+  '兑': [
+    { title:'小幸运', artist:'田馥甄', vibe:'甜蜜愉悦', reason:'兑为泽，悦乐之象。今天会有小确幸，听这首歌把好心情放大。' },
+    { title:'告白气球', artist:'周杰伦', vibe:'轻松欢快', reason:'兑主口舌悦乐。今天适合轻松一点，来首甜歌开心一下。' },
+    { title:'路过人间', artist:'郁可唯', vibe:'温暖治愈', reason:'兑为喜悦，人间值得。这首歌提醒你，每一天都值得被好好对待。' },
+  ],
+};
 
 /* ========== HELPERS ========== */
 function hashCode(str){ let h=0; for(let i=0;i<str.length;i++){h=((h<<5)-h)+str.charCodeAt(i);h|=0;} return Math.abs(h); }
 
-function getLineStr(val){
-  return val===0?'— —':val===1?'———':val===2?'— — × → ———':val===3?'——— ○ → — —':'';
-}
-
-function triIdx(rem){
-  const map=[1,0,7,2,4,6,3,5]; // idx rem 1乾(0) 2兑(7) 3离(2) 4震(4) 5巽(6) 6坎(3) 7艮(5) 8/0坤(1)
-  return map[rem];
-}
+const triMap=[1,0,7,2,4,6,3,5];
+function triIdx(rem){ return triMap[rem]; }
 
 function meiHuaChange(n1,n2){
-  const r1 = n1%8, r2 = n2%8;
-  const upper = triIdx(r1), lower = triIdx(r2);
-  const dongYao = (n1+n2)%6;
-  const dongYao1 = dongYao===0?6:dongYao;
+  const r1=n1%8, r2=n2%8;
+  const upper=triIdx(r1), lower=triIdx(r2);
+  const dongYao=(n1+n2)%6;
+  const dongYao1=dongYao===0?6:dongYao;
   return {upper,lower,dongYao:dongYao1,dongIdx:dongYao1-1};
 }
 
-function xiaoLiuRenCalc(n1,n2){
-  const p = ((n1-1)%6 + (n2-1)%6)%6;
-  const shun = ((n1-1)%6)+1;
-  const ni = 6-((n2-1)%6);
-  const final = ((n1+n2-1)%6)%6;
-  return xiaoLiuRen[final];
+function findHex(upper,lower){
+  for(let h of hex64) if(h[0]===upper&&h[1]===lower) return h;
+  const u=baGua[upper], l=baGua[lower];
+  return [upper,lower, l.name+u.name, `${l.desc}同时${u.desc}。上卦为${u.nature}、下卦为${l.nature}，合而观之。`];
 }
 
 function getMeiHuaWealth(tiYong){
@@ -513,6 +485,7 @@ function getMeiHuaWealth(tiYong){
   if(tiYong.includes('用克体')) return '财运受阻，看好钱包。今天不适合投资、借钱、大额消费，保守为上。';
   return '财运平平，按部就班即可。今天不宜有大动作。';
 }
+
 function getMeiHuaLove(tiYong){
   if(tiYong.includes('用生体')) return '有人主动靠近，缘分顺遂。单身的多留意身边人，有伴的今天对方会特别贴心。';
   if(tiYong.includes('体用比和')||tiYong.includes('万事顺遂')) return '势均力敌的关系最舒服。适合坦诚交流，把心里话说出来，默契会更好。';
@@ -522,17 +495,14 @@ function getMeiHuaLove(tiYong){
   return '感情平稳，不急不躁。今天适合顺其自然，别强求。';
 }
 
-function getLiuYaoWealth(changes){
-  if(changes===0) return '财运安稳，保持现状即可。今天不适合有大动作，守财为上。';
-  if(changes===1) return '财运有变动迹象，具体好坏要看动在那爻。但变动就是机会，留意身边的信号。';
-  if(changes===2) return '财运有上有下，月初月底需谨慎。进账和支出可能交替出现，做好预算。';
-  return '财运波动较大，今天不适合做任何重大财务决定。先稳住，等风平浪静再说。';
-}
-function getLiuYaoLove(changes){
-  if(changes===0) return '感情稳如泰山。老夫老妻模式，平淡是真。单身的不急，缘分不怕晚。';
-  if(changes===1) return '感情有一个明确的变化点。可能是一句话、一件事，让关系出现转折。留意细节。';
-  if(changes===2) return '感情里有拉扯感，彼此都在摇摆。别急着下结论，给双方一点时间。';
-  return '感情波动比较大，今天可能有大起大落。控制情绪，别在气头上做决定。';
+/* ========== 音乐推荐 ========== */
+function getSong(hex, seed){
+  const upGua = baGua[hex[0]], loGua = baGua[hex[1]];
+  // 以用卦（有动爻的那一卦）为主选歌，用卦代表外界/变化
+  const primary = upGua.name; // 上卦主外
+  const pool = songDB[primary] || songDB['乾'];
+  const idx = ((hex[0]*31 + hex[1]*7 + seed) % pool.length + pool.length) % pool.length;
+  return pool[idx];
 }
 
 /* ========== MAIN ========== */
@@ -549,42 +519,19 @@ function doDivination(){
   const dateHash=hashCode(dateStr);
   const seed=Math.abs(n1*31+n2)^dateHash;
 
-  /* --- 小六壬 --- */
-  const xlr=xiaoLiuRenCalc(n1,n2);
-  document.getElementById('cardXiaoLiuRen').innerHTML=`
-    <div class="method-head">
-      <div class="icon" style="background:#f3e0f0;">🔮</div>
-      <h2>小六壬</h2>
-      <span class="badge ${xlr.level==='ji'?'badge-ji':'badge-xiong'}">${xlr.level==='ji'?'吉':'凶'}</span>
-    </div>
-    <div class="method-body">
-      <div class="gua-display">
-        <div class="big-name">${xlr.name}</div>
-        <div class="detail">五行属${xlr.wuxing}　·　方位${xlr.dir}</div>
-      </div>
-      <p>${xlr.desc}</p>
-      <div class="xiaoliuren-grid">
-        <div class="sl-item"><span class="sl-label">事业</span><br>${xlr.career}</div>
-        <div class="sl-item"><span class="sl-label">财运</span><br>${xlr.wealth}</div>
-        <div class="sl-item"><span class="sl-label">感情</span><br>${xlr.love}</div>
-        <div class="sl-item"><span class="sl-label">健康</span><br>${xlr.health}</div>
-      </div>
-    </div>`;
-
-  /* --- 梅花易数 --- */
   const mh=meiHuaChange(n1,n2);
 
-  // generate 6 lines for 本卦 using seed
+  // 六爻
   const benLines=[];
   for(let i=0;i<6;i++) benLines.push(((seed>>(i*5))&0x1f)&1);
 
-  // 互卦: lines 2,3,4 → lower trigram; lines 3,4,5 → upper trigram (1-indexed)
-  const triValToIdx=[1,5,3,6,4,2,7,0]; // 3-bit value → baGua index (☷→坤1,☶→艮5,☵→坎3,☴→巽6,☳→震4,☲→离2,☱→兑7,☰→乾0)
+  // 互卦
+  const triValToIdx=[1,5,3,6,4,2,7,0];
   const interLoVal=(benLines[3]<<2)|(benLines[2]<<1)|benLines[1];
   const interUpVal=(benLines[4]<<2)|(benLines[3]<<1)|benLines[2];
   const interG=findHex(triValToIdx[interUpVal],triValToIdx[interLoVal]);
 
-  // 变卦: flip the changing line
+  // 变卦
   const bianLines=[...benLines];
   bianLines[mh.dongIdx]=bianLines[mh.dongIdx]?0:1;
   const bianLoTri=(bianLines[2]<<2)|(bianLines[1]<<1)|bianLines[0];
@@ -593,14 +540,12 @@ function doDivination(){
 
   const benG=findHex(mh.upper,mh.lower);
 
+  // 体用生克
   const tiGua=mh.dongIdx<3?baGua[mh.upper]:baGua[mh.lower];
   const yongGua=mh.dongIdx<3?baGua[mh.lower]:baGua[mh.upper];
   const wuxingRel={
-    '金':{生:'水',克:'木'},
-    '水':{生:'木',克:'火'},
-    '木':{生:'火',克:'土'},
-    '火':{生:'土',克:'金'},
-    '土':{生:'金',克:'水'},
+    '金':{生:'水',克:'木'},'水':{生:'木',克:'火'},'木':{生:'火',克:'土'},
+    '火':{生:'土',克:'金'},'土':{生:'金',克:'水'},
   };
   let tiYongTxt='';
   if(tiGua.element===yongGua.element) tiYongTxt='体用比和，主客相得，万事顺遂。';
@@ -609,119 +554,50 @@ function doDivination(){
   else if(wuxingRel[tiGua.element]&&wuxingRel[tiGua.element].生===yongGua.element) tiYongTxt='体生用，有耗损之象。付出多而回报少，宜量力而行。';
   else if(wuxingRel[yongGua.element]&&wuxingRel[yongGua.element].生===tiGua.element) tiYongTxt='用生体，外来生助之象。今日贵人相助，所谋之事易成，大吉。';
 
-  document.getElementById('cardMeiHua').innerHTML=`
-    <div class="method-head">
-      <div class="icon" style="background:#f0e0f0;">🌸</div>
-      <h2>梅花易数</h2>
-      <span class="badge badge-ji">${tiYongTxt.includes('大吉')||tiYongTxt.includes('万事顺遂')?'吉':tiYongTxt.includes('用克体')||tiYongTxt.includes('体生用')?'凶':'中'}</span>
-    </div>
-    <div class="method-body">
-      <div class="gua-display">
-        <div class="big-name">${benG[2]}</div>
-        <div class="detail">${baGua[mh.upper].symbol}${baGua[mh.upper].name}上 · ${baGua[mh.lower].symbol}${baGua[mh.lower].name}下　|　动第${mh.dongYao}爻</div>
-      </div>
-      <p>${benG[3]}</p>
-      <div class="arrow-row">⬇ 互卦</div>
-      <div class="gua-display">
-        <div class="big-name" style="font-size:24px;">${interG[2]}</div>
-        <div class="detail">互卦（过程之象）</div>
-      </div>
-      <p>${interG[3]}</p>
-      <div class="arrow-row">⬇ 变卦</div>
-      <div class="gua-display">
-        <div class="big-name" style="font-size:26px; color:#d63384;">${bianG[2]}</div>
-        <div class="detail">变卦（结果之象）</div>
-      </div>
-      <p>${bianG[3]}</p>
-      <div class="sub-label">体用生克</div>
-      <p><strong>体卦</strong>（${tiGua.symbol}${tiGua.name}·${tiGua.element}）← <strong>用卦</strong>（${yongGua.symbol}${yongGua.name}·${yongGua.element}）<br>${tiYongTxt}</p>
-      <div class="fortune-grid">
-        <div class="fortune-card">
-          <div class="card-label">💰 财运</div>
-          <div class="card-val card-wealth">${getMeiHuaWealth(tiYongTxt)}</div>
-        </div>
-        <div class="fortune-card">
-          <div class="card-label">❤️ 感情</div>
-          <div class="card-val card-love">${getMeiHuaLove(tiYongTxt)}</div>
-        </div>
-      </div>
-    </div>`;
+  // 音乐推荐
+  const song=getSong(benG, seed);
 
-  /* --- 六爻 --- */
-  const yaoLines=[];
-  for(let i=0;i<6;i++){
-    const v=((seed>>(i*5+2))&0xff)%4;
-    yaoLines.push({val:v,idx:i});
-  }
-  const triValToIdx2=[1,5,3,6,4,2,7,0];
-  const yaoUpTri=((yaoLines[3].val&2?1:0)<<2)|((yaoLines[4].val&2?1:0)<<1)|(yaoLines[5].val&2?1:0);
-  const yaoLoTri=((yaoLines[0].val&2?1:0)<<2)|((yaoLines[1].val&2?1:0)<<1)|(yaoLines[2].val&2?1:0);
-  const yaoBenG=findHex(triValToIdx2[yaoUpTri]||0,triValToIdx2[yaoLoTri]||0);
-  const changingLines=yaoLines.filter(l=>l.val===2||l.val===3);
-  let liuYaoInterpret='';
-  if(changingLines.length===0) liuYaoInterpret='六爻安静，无动爻。今日诸事以守为进，静观其变。';
-  else if(changingLines.length===1) liuYaoInterpret=`仅一爻动，事机单纯明确。动爻在${['初','二','三','四','五','上'][changingLines[0].idx]}爻，此为事变之关键所在。`;
-  else if(changingLines.length===2) liuYaoInterpret='两爻齐动，内外皆有变化。宜观上下两爻之势，取其中道而行。';
-  else liuYaoInterpret=`${changingLines.length}爻齐动，变动过大。今日宜静不宜动，待尘埃落定再作决断。`;
-
-  document.getElementById('cardLiuYao').innerHTML=`
-    <div class="method-head">
-      <div class="icon" style="background:#f0e0e8;">☯</div>
-      <h2>六爻占卜</h2>
-      <span class="badge ${changingLines.length===0?'badge-ji':changingLines.length<=2?'badge-zhong':'badge-xiong'}">${changingLines.length===0?'吉':changingLines.length<=2?'中':'凶'}</span>
+  document.getElementById('resultCard').innerHTML=`
+    <h2>${benG[2]}</h2>
+    <div class="gua-display">
+      <div class="detail">${baGua[mh.upper].symbol}${baGua[mh.upper].name}上 · ${baGua[mh.lower].symbol}${baGua[mh.lower].name}下　|　动第${mh.dongYao}爻</div>
     </div>
-    <div class="method-body">
-      <div class="gua-display">
-        <div class="big-name">${yaoBenG[2]}</div>
-        <div class="detail">本卦</div>
-      </div>
-      ${yaoLines.map(l=>`
-        <div class="line-row">
-          <span class="yao ${l.val===2||l.val===3?'yao-change':'yao-stable'}">${getLineStr(l.val)}</span>
-          <span style="font-size:11px;color:#b088b8;">${['初','二','三','四','五','上'][l.idx]}爻${l.val===0?' · 少阴':l.val===1?' · 少阳':l.val===2?' · 老阴 → 少阳':l.val===3?' · 老阳 → 少阴':''}</span>
-        </div>
-      `).join('')}
-      <p>${liuYaoInterpret}</p>
-      <div class="sub-label">卦辞</div>
-      <p>${yaoBenG[3]}</p>
-      <div class="fortune-grid">
-        <div class="fortune-card">
-          <div class="card-label">💰 财运</div>
-          <div class="card-val card-wealth">${getLiuYaoWealth(changingLines.length)}</div>
-        </div>
-        <div class="fortune-card">
-          <div class="card-label">❤️ 感情</div>
-          <div class="card-val card-love">${getLiuYaoLove(changingLines.length)}</div>
-        </div>
-      </div>
-    </div>`;
+    <p class="desc-text">${benG[3]}</p>
 
-  /* --- 大六壬 --- */
-  const dlrIdx=(n1+n2)%12;
-  const dlr=tianJiang[dlrIdx];
-  document.getElementById('cardDaLiuRen').innerHTML=`
-    <div class="method-head">
-      <div class="icon" style="background:#eee0f0;">🐉</div>
-      <h2>大六壬</h2>
-      <span class="badge ${dlr.level==='ji'?'badge-ji':dlr.level==='xiong'?'badge-xiong':'badge-zhong'}">${dlr.level==='ji'?'吉':dlr.level==='xiong'?'凶':'中'}</span>
+    <div class="arrow-row">⬇ 互卦（过程之象）</div>
+    <div class="gua-display">
+      <div class="big-name" style="font-size:24px;">${interG[2]}</div>
     </div>
-    <div class="method-body">
-      <div class="gua-display">
-        <div class="big-name">${dlr.name}</div>
-        <div class="detail">天将 · ${dlr.wuxing}神</div>
+    <p class="desc-text">${interG[3]}</p>
+
+    <div class="arrow-row">⬇ 变卦（结果之象）</div>
+    <div class="gua-display">
+      <div class="big-name" style="font-size:28px; color:#d63384;">${bianG[2]}</div>
+    </div>
+    <p class="desc-text">${bianG[3]}</p>
+
+    <div class="section-label">体用生克</div>
+    <p class="section-text"><strong>体卦</strong>（${tiGua.symbol}${tiGua.name}·${tiGua.element}）→ <strong>用卦</strong>（${yongGua.symbol}${yongGua.name}·${yongGua.element}）<br>${tiYongTxt}</p>
+
+    <div class="fortune-grid">
+      <div class="fortune-card">
+        <div class="card-label">财运</div>
+        <div class="card-val">${getMeiHuaWealth(tiYongTxt)}</div>
       </div>
-      <p>${dlr.desc}</p>
-      <div class="fortune-grid">
-        <div class="fortune-card">
-          <div class="card-label">💰 财运</div>
-          <div class="card-val card-wealth">${dlr.wealth}</div>
-        </div>
-        <div class="fortune-card">
-          <div class="card-label">❤️ 感情</div>
-          <div class="card-val card-love">${dlr.love}</div>
-        </div>
+      <div class="fortune-card">
+        <div class="card-label">感情</div>
+        <div class="card-val">${getMeiHuaLove(tiYongTxt)}</div>
       </div>
-    </div>`;
+    </div>
+
+    <div class="music-card">
+      <div class="music-icon">🎵</div>
+      <div class="song-title">${song.title}</div>
+      <div class="song-artist">${song.artist}</div>
+      <div class="song-vibe">${song.vibe}</div>
+      <div class="song-reason">${song.reason}</div>
+    </div>
+  `;
 
   document.getElementById('resultArea').classList.add('show');
   setTimeout(()=>{
