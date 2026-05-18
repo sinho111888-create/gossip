@@ -3,496 +3,657 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>易经 · 今日运程</title>
+<title>每日一占</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;600;700&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  min-height: 100vh;
-  background: #1a0c0a;
-  background-image:
-    radial-gradient(ellipse at 50% 0%, rgba(180,130,60,0.15) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 100%, rgba(139,69,19,0.1) 0%, transparent 50%),
-    url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L33 12 L40 12 L35 17 L37 24 L30 20 L23 24 L25 17 L20 12 L27 12Z' fill='%23b8870e05'/%3E%3C/svg%3E");
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height:100vh;
+  background: linear-gradient(160deg, #faf5fc 0%, #f3e8f8 30%, #fce8f0 100%);
   font-family: 'Noto Serif SC', serif;
-  color: #d4b87a;
+  color: #3d2648;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:40px 20px 60px;
 }
 
-.container {
-  width: 90%;
-  max-width: 520px;
-  padding: 48px 36px;
-  border: 2px solid #8b6914;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #1e1210 0%, #160d0a 100%);
-  box-shadow:
-    0 0 40px rgba(139,105,20,0.15),
-    inset 0 0 60px rgba(139,105,20,0.03);
-  position: relative;
+.header {
+  text-align:center;
+  margin-bottom:32px;
 }
 
-.container::before {
-  content: '';
-  position: absolute; inset: 8px;
-  border: 1px solid #5a4210;
-  border-radius: 2px; pointer-events: none;
+.header h1 {
+  font-family:'Ma Shan Zheng', cursive;
+  font-size:44px;
+  color:#8b3a9e;
+  letter-spacing:6px;
+  margin-bottom:6px;
 }
 
-.head {
-  text-align: center;
-  margin-bottom: 32px;
+.header .sub {
+  font-size:13px;
+  color:#b088b8;
+  letter-spacing:4px;
 }
 
-.head .bagua {
-  font-size: 48px; line-height: 1; color: #b8870e;
-  text-shadow: 0 0 20px rgba(184,135,14,0.4);
-  margin-bottom: 8px;
+.input-card {
+  background:#fff;
+  border-radius:16px;
+  padding:28px 32px;
+  width:100%;
+  max-width:460px;
+  box-shadow: 0 2px 20px rgba(130,60,160,0.08), 0 1px 4px rgba(130,60,160,0.04);
+  margin-bottom:28px;
+  border:1px solid #ecd8f0;
 }
 
-.head h1 {
-  font-family: 'Ma Shan Zheng', cursive;
-  font-size: 36px; color: #d4a030;
-  letter-spacing: 4px;
-  text-shadow: 0 2px 8px rgba(180,130,60,0.3);
+.input-card label {
+  display:block;
+  text-align:center;
+  font-size:14px;
+  color:#9b7aaa;
+  letter-spacing:3px;
+  margin-bottom:14px;
 }
 
-.head .sub {
-  font-size: 13px; color: #8b7355;
-  letter-spacing: 2px; margin-top: 4px;
+.num-row {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:center;
 }
 
-.head .divider {
-  margin: 16px auto 0;
-  width: 60px; height: 2px;
-  background: linear-gradient(90deg, transparent, #8b6914, transparent);
+.num-row input {
+  width:100px;
+  padding:12px 0;
+  text-align:center;
+  font-size:22px;
+  font-family:'Noto Serif SC', serif;
+  border:1.5px solid #e4c8e8;
+  border-radius:10px;
+  color:#5b2870;
+  background:#fdf8fe;
+  outline:none;
+  transition:all .25s;
+  -moz-appearance:textfield;
+}
+.num-row input::-webkit-inner-spin-button { display:none; }
+
+.num-row input:focus {
+  border-color:#b870d0;
+  box-shadow:0 0 0 3px rgba(180,100,200,0.1);
+  background:#fff;
 }
 
-.input-area {
-  margin-bottom: 28px;
+.num-row .sep {
+  font-size:20px;
+  color:#c8a0d0;
+  font-family:'Ma Shan Zheng', cursive;
 }
 
-.input-area label {
-  display: block;
-  text-align: center;
-  font-size: 15px; letter-spacing: 2px;
-  margin-bottom: 12px; color: #b8995b;
+.num-row button {
+  padding:12px 32px;
+  background:linear-gradient(135deg, #a855c8, #8b3a9e);
+  border:none;
+  border-radius:10px;
+  color:#fff;
+  font-size:17px;
+  font-family:'Ma Shan Zheng', cursive;
+  letter-spacing:4px;
+  cursor:pointer;
+  transition:all .25s;
+  box-shadow:0 2px 12px rgba(140,60,160,0.2);
 }
 
-.input-row {
-  display: flex; gap: 10px;
+.num-row button:hover {
+  transform:translateY(-1px);
+  box-shadow:0 4px 18px rgba(140,60,160,0.3);
 }
 
-.input-row input {
-  flex: 1;
-  background: #0d0806;
-  border: 1px solid #4a3410;
-  border-radius: 2px;
-  padding: 12px 16px;
-  font-size: 18px;
-  color: #d4b87a;
-  font-family: 'Noto Serif SC', serif;
-  text-align: center; letter-spacing: 2px;
-  outline: none;
-  transition: border-color .3s, box-shadow .3s;
+.num-row button:active {
+  transform:scale(0.97);
 }
 
-.input-row input:focus {
-  border-color: #b8870e;
-  box-shadow: 0 0 12px rgba(184,135,14,0.15);
+.result-area {
+  display:none;
+  width:100%;
+  max-width:680px;
 }
 
-.input-row input::placeholder {
-  color: #4a3820; letter-spacing: 1px;
+.result-area.show { display:block; }
+
+.method-card {
+  background:#fff;
+  border-radius:14px;
+  padding:24px 28px;
+  margin-bottom:16px;
+  box-shadow:0 1px 12px rgba(130,60,160,0.05);
+  border:1px solid #ecd8f0;
+  transition:all .3s;
 }
 
-.input-row button {
-  padding: 12px 28px;
-  background: linear-gradient(180deg, #2a1a08 0%, #1a0e04 100%);
-  border: 1px solid #8b6914;
-  border-radius: 2px;
-  color: #d4a030;
-  font-size: 16px;
-  font-family: 'Ma Shan Zheng', cursive;
-  letter-spacing: 3px; cursor: pointer;
-  transition: all .3s;
-  white-space: nowrap;
+.method-card:hover {
+  box-shadow:0 4px 24px rgba(130,60,160,0.1);
 }
 
-.input-row button:hover {
-  background: linear-gradient(180deg, #3a2610 0%, #2a1608 100%);
-  box-shadow: 0 0 16px rgba(184,135,14,0.2);
-  color: #f0c040;
+.method-head {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+  padding-bottom:10px;
+  border-bottom:1px solid #f4e4f8;
 }
 
-.input-row button:active {
-  transform: scale(0.96);
+.method-head .icon {
+  width:32px; height:32px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
 }
 
-.result {
-  display: none;
+.method-head h2 {
+  font-size:17px;
+  font-weight:600;
+  color:#5b2870;
+  letter-spacing:2px;
 }
 
-.result.show { display: block; }
-
-.result-inner {
-  background: #0d0806;
-  border: 1px solid #3a2610;
-  border-radius: 2px;
-  padding: 28px 24px;
-  text-align: center;
+.method-head .badge {
+  font-size:10px;
+  padding:2px 8px;
+  border-radius:20px;
+  letter-spacing:1px;
+  font-weight:600;
 }
 
-.hexagram {
-  margin-bottom: 20px;
+.badge-ji { background:#e8f5e0; color:#5b9a3a; }
+.badge-xiong { background:#fde8e8; color:#c84848; }
+.badge-zhong { background:#fef3e0; color:#b87828; }
+
+.method-body {
+  font-size:14px;
+  line-height:1.8;
+  color:#5e4270;
 }
 
-.hexagram .gua-name {
-  font-family: 'Ma Shan Zheng', cursive;
-  font-size: 42px; color: #d4a030;
-  letter-spacing: 6px;
+.method-body .line-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:4px 0;
+  font-size:15px;
 }
 
-.hexagram .gua-lines {
-  margin: 12px 0; font-size: 14px; color: #6b5535;
-  letter-spacing: 2px;
+.method-body .line-row .yao {
+  font-size:20px;
+  min-width:80px;
+  letter-spacing:2px;
 }
 
-.hexagram .gua-num {
-  font-size: 12px; color: #5a4210;
-  letter-spacing: 1px;
+.yao-change { color:#d63384; font-weight:700; }
+.yao-stable { color:#6b4d78; }
+
+.gua-display {
+  text-align:center;
+  padding:12px 0;
+  margin:8px 0;
+  background:#fdf8fe;
+  border-radius:10px;
 }
 
-.fortune-section {
-  margin: 16px 0; padding: 12px 0;
-  border-top: 1px solid #2a1a08;
-  border-bottom: 1px solid #2a1a08;
+.gua-display .big-name {
+  font-family:'Ma Shan Zheng', cursive;
+  font-size:32px;
+  color:#8b3a9e;
+  letter-spacing:4px;
 }
 
-.fortune-section .label {
-  font-size: 13px; color: #8b7355;
-  letter-spacing: 3px; margin-bottom: 8px;
+.gua-display .detail {
+  font-size:12px;
+  color:#b088b8;
+  margin-top:2px;
+  letter-spacing:1px;
 }
 
-.fortune-section .content {
-  font-size: 15px; color: #c4a060;
-  line-height: 1.9; letter-spacing: 1px;
+.method-body .sub-label {
+  font-size:12px;
+  color:#b088b8;
+  letter-spacing:2px;
+  margin-top:10px;
+  margin-bottom:4px;
 }
 
-.fortune-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px; margin-top: 16px;
+.arrow-row {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:8px 0;
+  font-size:14px;
+  color:#a878b8;
 }
 
-.fortune-card {
-  background: #110906;
-  border: 1px solid #2a1a08;
-  border-radius: 2px;
-  padding: 14px 12px;
+.xiaoliuren-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:8px;
 }
 
-.fortune-card .card-label {
-  font-size: 12px; color: #6b5535;
-  letter-spacing: 2px; margin-bottom: 6px;
+.xiaoliuren-grid .sl-item {
+  font-size:13px;
+  padding:6px 10px;
+  background:#fdf8fe;
+  border-radius:8px;
 }
 
-.fortune-card .card-val {
-  font-size: 14px; letter-spacing: 1px;
-  line-height: 1.6;
+.sl-item .sl-label {
+  font-size:11px;
+  color:#a880b8;
+  letter-spacing:1px;
 }
 
-.card-val.good { color: #8bb060; }
-.card-val.warn { color: #c09040; }
-.card-val.bad { color: #b05040; }
-
-.iching-quote {
-  margin-top: 20px; padding: 12px 16px;
-  border-left: 2px solid #5a4210;
-  text-align: left;
+.method-body p {
+  margin:4px 0;
 }
 
-.iching-quote .quote-text {
-  font-size: 14px; color: #8b7355;
-  line-height: 1.8; font-style: italic;
+.footer-action {
+  text-align:center;
+  margin-top:24px;
 }
 
-.iching-quote .quote-src {
-  margin-top: 6px; font-size: 12px;
-  color: #5a4210; letter-spacing: 1px;
+.footer-action button {
+  background:none;
+  border:1.5px solid #d8b8e0;
+  border-radius:20px;
+  padding:8px 28px;
+  font-size:13px;
+  color:#8b5098;
+  letter-spacing:3px;
+  cursor:pointer;
+  font-family:'Noto Serif SC', serif;
+  transition:all .25s;
 }
 
-.meter {
-  display: flex; align-items: center; gap: 8px;
-  margin: 4px 0;
+.footer-action button:hover {
+  border-color:#b870d0;
+  color:#6b3080;
+  background:#fdf8fe;
 }
-
-.meter .bar-bg {
-  flex: 1; height: 5px;
-  background: #2a1a08; border-radius: 3px;
-  overflow: hidden;
-}
-
-.meter .bar-fill {
-  height: 100%; border-radius: 3px;
-  transition: width 1s ease;
-}
-
-.meter .bar-fill.high { background: linear-gradient(90deg, #8bb060, #6ba040); }
-.meter .bar-fill.mid { background: linear-gradient(90deg, #c09040, #a07030); }
-.meter .bar-fill.low { background: linear-gradient(90deg, #b05040, #903020); }
-
-.meter .bar-num {
-  font-size: 13px; min-width: 28px;
-  text-align: right; letter-spacing: 1px;
-}
-
-.footer { text-align: center; margin-top: 20px; }
-
-.footer .retry {
-  font-size: 13px; color: #5a4210;
-  letter-spacing: 2px; cursor: pointer;
-  background: none; border: none;
-  font-family: 'Noto Serif SC', serif;
-  transition: color .3s;
-}
-
-.footer .retry:hover { color: #b8870e; }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity:0; transform:translateY(16px); }
+  to { opacity:1; transform:translateY(0); }
 }
 
-.result.show .result-inner { animation: fadeUp .6s ease; }
+.result-area.show .method-card {
+  animation:fadeUp .5s ease both;
+}
+.result-area.show .method-card:nth-child(1) { animation-delay:0s; }
+.result-area.show .method-card:nth-child(2) { animation-delay:.08s; }
+.result-area.show .method-card:nth-child(3) { animation-delay:.16s; }
+.result-area.show .method-card:nth-child(4) { animation-delay:.24s; }
+
+@media (max-width:480px) {
+  body { padding:24px 12px 40px; }
+  .num-row input { width:72px; font-size:18px; padding:10px 0; }
+  .num-row button { padding:10px 20px; font-size:15px; }
+  .method-card { padding:16px 18px; }
+  .xiaoliuren-grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="head">
-    <div class="bagua">☰☷☲☵☳☶☴☱</div>
-    <h1>易经运程</h1>
-    <div class="sub">— 每日一卦 · 趋吉避凶 —</div>
-    <div class="divider"></div>
+<div class="header">
+  <h1>每日一占</h1>
+  <div class="sub">— 小六壬 · 梅花易数 · 六爻 · 大六壬 —</div>
+</div>
+
+<div class="input-card">
+  <label>心中默想两个数字</label>
+  <div class="num-row">
+    <input type="number" id="num1" placeholder="数一" min="1" max="999">
+    <span class="sep">·</span>
+    <input type="number" id="num2" placeholder="数二" min="1" max="999">
+    <button onclick="doDivination()">起 卦</button>
   </div>
+</div>
 
-  <div class="input-area">
-    <label>请输入您的姓名</label>
-    <div class="input-row">
-      <input type="text" id="nameInput" placeholder="请输入姓名..." maxlength="20">
-      <button onclick="showFortune()">开 卦</button>
-    </div>
-  </div>
+<div class="result-area" id="resultArea">
+  <div class="method-card" id="cardXiaoLiuRen"></div>
+  <div class="method-card" id="cardMeiHua"></div>
+  <div class="method-card" id="cardLiuYao"></div>
+  <div class="method-card" id="cardDaLiuRen"></div>
 
-  <div class="result" id="result">
-    <div class="result-inner">
-      <div class="hexagram">
-        <div class="gua-name" id="guaName"></div>
-        <div class="gua-lines" id="guaLines"></div>
-        <div class="gua-num" id="guaNum"></div>
-      </div>
-
-      <div class="fortune-section">
-        <div class="label">今日总运</div>
-        <div class="content" id="overall"></div>
-      </div>
-
-      <div class="fortune-grid">
-        <div class="fortune-card">
-          <div class="card-label">事业 / 学业</div>
-          <div class="card-val" id="career"></div>
-        </div>
-        <div class="fortune-card">
-          <div class="card-label">财运</div>
-          <div class="card-val" id="wealth"></div>
-        </div>
-        <div class="fortune-card">
-          <div class="card-label">感情 / 人际</div>
-          <div class="card-val" id="love"></div>
-        </div>
-        <div class="fortune-card">
-          <div class="card-label">健康</div>
-          <div class="card-val" id="health"></div>
-        </div>
-      </div>
-
-      <div class="iching-quote">
-        <div class="quote-text" id="quote"></div>
-        <div class="quote-src" id="quoteSrc"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <button class="retry" onclick="resetForm()">再起一卦</button>
+  <div class="footer-action">
+    <button onclick="resetAll()">再占一卦</button>
   </div>
 </div>
 
 <script>
-const today = new Date();
-const dateStr = `${today.getFullYear()}${today.getMonth()+1}${today.getDate()}`;
+/* ========== TRIGRAMS & HEXAGRAMS ========== */
+const baGua = [
+  { idx:0, name:'乾', element:'金', symbol:'☰', nature:'天', dir:'西北', body:'头', desc:'刚健' },
+  { idx:1, name:'坤', element:'土', symbol:'☷', nature:'地', dir:'西南', body:'腹', desc:'柔顺' },
+  { idx:2, name:'离', element:'火', symbol:'☲', nature:'火', dir:'南',   body:'目', desc:'光明' },
+  { idx:3, name:'坎', element:'水', symbol:'☵', nature:'水', dir:'北',   body:'耳', desc:'险陷' },
+  { idx:4, name:'震', element:'木', symbol:'☳', nature:'雷', dir:'东',   body:'足', desc:'震动' },
+  { idx:5, name:'艮', element:'土', symbol:'☶', nature:'山', dir:'东北', body:'手', desc:'静止' },
+  { idx:6, name:'巽', element:'木', symbol:'☴', nature:'风', dir:'东南', body:'股', desc:'入微' },
+  { idx:7, name:'兑', element:'金', symbol:'☱', nature:'泽', dir:'西',   body:'口', desc:'悦乐' },
+];
 
-function hashCode(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) - hash) + str.charCodeAt(i);
-    hash |= 0;
+const hex64 = [
+  [0,0, '乾为天','元亨利贞，刚健不息。六爻纯阳，君子当自强。'],
+  [1,1, '坤为地','元亨，利牝马之贞。柔顺承载，厚德载物。'],
+  [3,4, '水雷屯','元亨利贞。勿用有攸往。万物始生，艰难中藏生机。'],
+  [5,3, '山水蒙','亨。匪我求童蒙，童蒙求我。蒙昧待启，求教当时。'],
+  [3,0, '水天需','有孚，光亨，贞吉。利涉大川。待时而动，饮食宴乐。'],
+  [0,3, '天水讼','有孚窒惕，中吉，终凶。争讼宜退，求中正。'],
+  [1,3, '地水师','贞，丈人吉，无咎。师出有名，以正伐邪。'],
+  [3,1, '水地比','吉。原筮元永贞，无咎。亲附和合，广结善缘。'],
+  [6,0, '风天小畜','亨。密云不雨。小有积蓄，未可大行。'],
+  [0,7, '天泽履','履虎尾，不咥人，亨。如履薄冰，谨慎行事。'],
+  [1,0, '地天泰','小往大来，吉亨。天地交泰，万象更新。'],
+  [0,1, '天地否','否之匪人，不利君子贞。天地不交，韬光养晦。'],
+  [0,2, '天火同人','同人于野，亨。利涉大川。与人同心，其利断金。'],
+  [2,0, '火天大有','元亨。所有者大，光明普照，当仁不让。'],
+  [1,5, '地山谦','亨，君子有终。满招损，谦受益。'],
+  [4,1, '雷地豫','利建侯行师。悦乐而动，顺势而为。'],
+  [7,4, '泽雷随','元亨利贞，无咎。随时之义大矣哉。'],
+  [5,6, '山风蛊','元亨，利涉大川。先甲三日，后甲三日。振弊起衰。'],
+  [1,7, '地泽临','元亨利贞。至于八月有凶。亲临督导，事必躬亲。'],
+  [6,1, '风地观','盥而不荐，有孚颙若。观天察地，静观其变。'],
+  [2,4, '火雷噬嗑','亨，利用狱。噬嗑者，啮而合也。明罚敕法。'],
+  [5,2, '山火贲','亨。小利有攸往。饰以文采，外华内实。'],
+  [5,1, '山地剥','不利有攸往。小人道长，君子道消。剥落之象。'],
+  [1,4, '地雷复','亨。出入无疾，朋来无咎。一阳来复，万象更新。'],
+  [0,4, '天雷无妄','元亨利贞。其匪正有眚，不利有攸往。真实无妄。'],
+  [5,0, '山天大畜','利贞。不家食吉，利涉大川。蓄德养贤，厚积薄发。'],
+  [5,4, '山雷颐','贞吉。观颐，自求口实。颐养之道，自食其力。'],
+  [7,6, '泽风大过','栋桡，利有攸往，亨。非常之时，非常之举。'],
+  [3,3, '坎为水','习坎，有孚，维心亨，行有尚。险中求存，诚信为本。'],
+  [2,2, '离为火','利贞，亨。畜牝牛，吉。光明正大，依附得吉。'],
+  [7,5, '泽山咸','亨利贞，取女吉。感而遂通，心有灵犀。'],
+  [4,6, '雷风恒','亨，无咎，利贞，利有攸往。恒久不变，持之有恒。'],
+  [0,5, '天山遁','亨，小利贞。退避有时，以退为进。'],
+  [4,0, '雷天大壮','利贞。大者壮也，刚以动。声势浩大，宜守正。'],
+  [2,1, '火地晋','康侯用锡马蕃庶，昼日三接。旭日东升，蒸蒸日上。'],
+  [1,2, '地火明夷','利艰贞。明入地中，韬光养晦，处困守正。'],
+  [6,2, '风火家人','利女贞。正家而天下定，家和万事兴。'],
+  [2,7, '火泽睽','小事吉。二女同居，其志不同行。求同存异。'],
+  [3,5, '水山蹇','利西南，不利东北。利见大人，贞吉。艰难险阻。'],
+  [4,3, '雷水解','利西南，无所往，其来复吉。有攸往，夙吉。解脱困境。'],
+  [5,7, '山泽损','有孚，元吉，无咎，可贞，利有攸往。损下益上。'],
+  [6,4, '风雷益','利有攸往，利涉大川。损上益下，民悦无疆。'],
+  [7,0, '泽天夬','扬于王庭，孚号有厉。告自邑，不利即戎。决断果断。'],
+  [0,6, '天风姤','女壮，勿用取女。不期而遇，一阴始生。'],
+  [7,1, '泽地萃','亨。王假有庙。利见大人，亨，利贞。汇聚精英。'],
+  [1,6, '地风升','元亨，用见大人，勿恤，南征吉。步步高升，小以高大。'],
+  [7,3, '泽水困','亨，贞，大人吉，无咎。有言不信。困而不失其所。'],
+  [3,6, '水风井','改邑不改井，无丧无得。往来井井。井养不穷。'],
+  [7,2, '泽火革','巳日乃孚，元亨利贞，悔亡。变革之时，顺天应人。'],
+  [2,6, '火风鼎','元吉，亨。鼎新革故，养贤用能。'],
+  [4,4, '震为雷','亨。震惊百里，不丧匕鬯。临危不乱，处变不惊。'],
+  [5,5, '艮为山','艮其背，不获其身。行其庭，不见其人。知止不殆。'],
+  [6,5, '风山渐','女归吉，利贞。循序渐进，不可冒进。'],
+  [4,7, '雷泽归妹','征凶，无攸利。归妹，天地之大义。慎始敬终。'],
+  [4,2, '雷火丰','亨，王假之，勿忧，宜日中。丰盛之时，盛极防衰。'],
+  [2,5, '火山旅','小亨，旅贞吉。行旅在外，宜守正。'],
+  [6,6, '巽为风','小亨，利有攸往，利见大人。柔顺而入，风行天下。'],
+  [7,7, '兑为泽','亨利贞。悦而利贞，顺天应人。'],
+  [6,3, '风水涣','亨。王假有庙，利涉大川，利贞。涣散重聚。'],
+  [3,7, '水泽节','亨。苦节不可贞。节以制度，不伤财害民。'],
+  [6,7, '风泽中孚','豚鱼吉，利涉大川，利贞。诚信感物，信及豚鱼。'],
+  [4,5, '雷山小过','亨利贞。可小事，不可大事。小有过之，宜下不宜上。'],
+  [3,2, '水火既济','亨小，利贞。初吉终乱。事成之后，慎始慎终。'],
+  [2,3, '火水未济','亨。小狐汔济，濡其尾，无攸利。未竟之业，仍需努力。'],
+];
+
+function findHex(upper,lower) {
+  for (let h of hex64) {
+    if (h[0]===upper && h[1]===lower) return h;
   }
-  return Math.abs(hash);
+  const u=baGua[upper], l=baGua[lower];
+  return [upper,lower, l.name+u.name, `${l.desc}而${u.desc}，${l.nature}下${u.nature}上之象。`];
 }
 
-const trigrams = ['☰乾','☷坤','☲离','☵坎','☳震','☶艮','☴巽','☱兑'];
-const trigramNames = ['乾','坤','离','坎','震','艮','巽','兑'];
-const elements = ['天','地','火','水','雷','山','风','泽'];
-
-const hexagrams = [
-  { name:'乾为天', upper:0, lower:0, desc:'刚健中正，纯阳之象。今日当主动出击，以刚毅之气应对诸事。' },
-  { name:'坤为地', upper:1, lower:1, desc:'柔顺承载，厚德载物。今日宜静不宜动，以柔克刚，守成待时。' },
-  { name:'水雷屯', upper:3, lower:4, desc:'万物始生，困难重重。然生机潜藏，耐心耕耘则后必有获。' },
-  { name:'山水蒙', upper:5, lower:3, desc:'蒙昧初开，求知之时。今日宜虚心求教，不可刚愎自用。' },
-  { name:'水天需', upper:3, lower:0, desc:'待时而动，饮食宴乐。今日宜等待时机，不可急于求成。' },
-  { name:'天水讼', upper:0, lower:3, desc:'争讼不和，宜求中正。今日宜退一步海阔天空，避免口舌之争。' },
-  { name:'地水师', upper:1, lower:3, desc:'师出有名，以正制邪。今日宜以正道行事，方能服众。' },
-  { name:'水地比', upper:3, lower:1, desc:'亲附和合，团结一心。今日宜广结善缘，合则两利。' },
-  { name:'风天小畜', upper:6, lower:0, desc:'小有积蓄，未可大行。今日宜积少成多，勿贪大求快。' },
-  { name:'天泽履', upper:0, lower:7, desc:'履虎尾而不咥，亨。今日行事须谨慎小心，如履薄冰。' },
-  { name:'地天泰', upper:1, lower:0, desc:'天地交泰，万物亨通。今日万事顺遂，宜乘势而上。' },
-  { name:'天地否', upper:0, lower:1, desc:'天地不交，闭塞不通。今日宜韬光养晦，等待转机。' },
-  { name:'天火同人', upper:0, lower:2, desc:'与人同心，其利断金。今日宜团队协作，众志成城。' },
-  { name:'火天大有', upper:2, lower:0, desc:'所有者大，无所不有。今日运势强盛，宜大胆进取。' },
-  { name:'地山谦', upper:1, lower:5, desc:'谦谦君子，卑以自牧。今日宜低调行事，谦逊得福。' },
-  { name:'雷地豫', upper:4, lower:1, desc:'悦乐而动，顺势而为。今日宜顺应时势，不可逆天而行。' },
+/* ========== 小六壬 DATA ========== */
+const xiaoLiuRen = [
+  { name:'大安', level:'ji', wuxing:'木', desc:'身不动时，五行属木，东方青龙。主平安稳定，诸事顺遂。所求之事多成，远行有归，失物不远。', career:'工作安稳，宜守不宜攻。按部就班即有收获。', wealth:'财运平稳，宜储蓄不宜投机。' ,love:'感情和睦，平淡是真。', health:'身体无恙，注意肝胆养护。', dir:'东方' },
+  { name:'留连', level:'xiong', wuxing:'水', desc:'卒未归时，五行属水，北方玄武。主事有牵绊，欲速不达。凡事反复，宜耐心等待。', career:'事多拖延，宜沉住气，不宜冒进换岗。', wealth:'财运欠佳，慎防破耗，不宜投资。', love:'关系暧昧不明，宜保持距离观之。', health:'有湿气之患，注意脾胃与肾脏。', dir:'北方' },
+  { name:'速喜', level:'ji', wuxing:'火', desc:'人便至时，五行属火，南方朱雀。主喜事临门，消息速达。万事可望迅速成就。', career:'有升迁或跳槽良机，宜当机立断。', wealth:'偏财运佳，有意外进账之喜。', love:'桃花旺盛，单身者有望遇良缘。', health:'心火稍旺，注意口腔与睡眠。', dir:'南方' },
+  { name:'赤口', level:'xiong', wuxing:'金', desc:'官事凶时，五行属金，西方白虎。主口舌是非，官非争讼。言多必失，宜沉默低调。', career:'谨防小人，工作中口舌之争能避则避。', wealth:'有破财风险，不宜借贷与担保。', love:'易生口角，说话留三分余地。', health:'注意呼吸道与肺部健康。', dir:'西方' },
+  { name:'小吉', level:'ji', wuxing:'木', desc:'人来喜时，五行属木，东方六合。主小有喜乐，诸事和合。虽非大吉，亦有所得。', career:'合作运佳，宜借团队之力成事。', wealth:'小有进账，宜见好就收。', love:'有喜相逢之兆，关系向好。', health:'大体安好，注意肠胃消化。', dir:'东方' },
+  { name:'空亡', level:'xiong', wuxing:'土', desc:'音信稀时，五行属土，中方勾陈。主谋事落空，劳而无功。宜静不宜动，守成为上。', career:'事多不顺，方案易被否，宜蛰伏。', wealth:'财来财去一场空，忌投资赌博。', love:'缘分难成，宜随缘不执著。', health:'脾胃不调，情绪易低落。', dir:'中央' },
 ];
 
-const quotes = [
-  { text:'天行健，君子以自强不息。', src:'— 《周易·乾卦》' },
-  { text:'地势坤，君子以厚德载物。', src:'— 《周易·坤卦》' },
-  { text:'君子以见善则迁，有过则改。', src:'— 《周易·益卦》' },
-  { text:'二人同心，其利断金；同心之言，其臭如兰。', src:'— 《周易·系辞》' },
-  { text:'穷则变，变则通，通则久。', src:'— 《周易·系辞》' },
-  { text:'君子藏器于身，待时而动。', src:'— 《周易·系辞》' },
-  { text:'善不积，不足以成名；恶不积，不足以灭身。', src:'— 《周易·系辞》' },
-  { text:'君子以言有物而行有恒。', src:'— 《周易·家人卦》' },
-  { text:'君子以思不出其位。', src:'— 《周易·艮卦》' },
-  { text:'君子以顺德，积小以高大。', src:'— 《周易·升卦》' },
-  { text:'知进退存亡而不失其正者，其唯圣人乎。', src:'— 《周易·乾卦》' },
-  { text:'居上位而不骄，在下位而不忧。', src:'— 《周易·乾卦》' },
-  { text:'君子以反身修德。', src:'— 《周易·蹇卦》' },
-  { text:'君子以多识前言往行，以畜其德。', src:'— 《周易·大畜卦》' },
-  { text:'一阴一阳之谓道。', src:'— 《周易·系辞》' },
+/* ========== 大六壬 DATA ========== */
+const tianJiang = [
+  { name:'贵人', level:'ji', wuxing:'土', desc:'己丑土。贵神之主，司福佑。今日贵人临身，凡事有助。遇困得解，逢凶化吉。' },
+  { name:'腾蛇', level:'xiong', wuxing:'火', desc:'丁巳火。虚惊怪异之神。今日须防欺诈与意外惊吓。言语之间多留神，莫信空穴来风。' },
+  { name:'朱雀', level:'zhong', wuxing:'火', desc:'丙午火。文书口舌之神。今日宜慎言慎行，文书合同多加审阅。然朱雀亦主文采，利于创作表达。' },
+  { name:'六合', level:'ji', wuxing:'木', desc:'乙卯木。和合婚姻之神。今日利于合作、谈判、姻缘。万物以和为贵，和气自能生财。' },
+  { name:'勾陈', level:'xiong', wuxing:'土', desc:'戊辰土。争斗田土之神。今日宜防纷争与不动产相关事宜。守拙藏锋，不与人争。' },
+  { name:'青龙', level:'ji', wuxing:'木', desc:'甲寅木。财帛喜庆之神。大吉大利，今日财喜双全。所谋之事有贵人相助，顺风顺水。' },
+  { name:'天空', level:'xiong', wuxing:'土', desc:'戊戌土。虚诈不实之神。今日宜防虚言假语、空欢喜。做事须落在实处，忌好高骛远。' },
+  { name:'白虎', level:'xiong', wuxing:'金', desc:'庚申金。道路血光之神。今日出行多加小心，忌争强好胜动肝火。心平气和为上。' },
+  { name:'太常', level:'ji', wuxing:'土', desc:'己未土。宴乐衣食之神。今日口福不浅，宜享美食酬劳自己。凡事以平常心处之。' },
+  { name:'玄武', level:'xiong', wuxing:'水', desc:'癸亥水。盗贼阴私之神。今日谨防钱财丢失、隐私泄露。重要资料妥善保管。' },
+  { name:'太阴', level:'ji', wuxing:'金', desc:'辛酉金。阴私暗昧之神。今日宜低调行事，暗中布局。事以密成，语以泄败。' },
+  { name:'天后', level:'ji', wuxing:'水', desc:'壬子水。恩泽庇佑之神。今日得女性贵人相助。温润如水，以柔克刚。' },
 ];
 
-const careerFortunes = [
-  { level:'good', text:'今日职场如日方升，贵人暗中相助。大胆展示你的能力，上级自会看在眼里。若有新项目，主动请缨可成。' },
-  { level:'good', text:'灵感迸发之日，棘手问题能迎刃而解。团队中你的发言将获得一致认可，领导者之象初显。' },
-  { level:'mid', text:'按部就班，稳扎稳打即可。今日不宜激进求变，守好本职即为上策。若遇争执，退一步反得先机。' },
-  { level:'mid', text:'看似风平浪静，实则暗流涌动。今日宜多观察少表态，静观其变再作打算。老同事的一句话可能暗藏玄机。' },
-  { level:'mid', text:'进退两难之时，不妨回归初心。今日宜回顾过往经验，旧方法或能解新课题。忌好高骛远。' },
-  { level:'warn', text:'今日或有小人作祟，处事多加一分谨慎。重要文件须反复确认，口舌之争能避则避。' },
-  { level:'warn', text:'节奏稍显紊乱，宜放慢脚步重新梳理。今日不宜做重大决策，先把眼前小事处理妥当。' },
-  { level:'bad', text:'今日职途有阻，方案被否、沟通不畅皆有可能。然否极泰来，此为积累经验之时，不必太过沮丧。' },
-];
+/* ========== HELPERS ========== */
+function hashCode(str){ let h=0; for(let i=0;i<str.length;i++){h=((h<<5)-h)+str.charCodeAt(i);h|=0;} return Math.abs(h); }
 
-const wealthFortunes = [
-  { level:'good', text:'财星高照，偏财运佳。意外之财或旧账回款有望。投资宜取稳健策略，见好就收。' },
-  { level:'good', text:'守财有道，今日适合整理财务、制定预算。理财计划今日定下的，执行起来事半功倍。' },
-  { level:'mid', text:'收支平衡，不宜大进大出。今日适合精打细算，拒绝冲动消费。小财运在东南方。' },
-  { level:'mid', text:'财运平平，勿贪横财。今日宜守不宜攻，理财以稳健为主。花小钱请客吃饭，或有意外收获。' },
-  { level:'warn', text:'破财之兆，今日不宜投资与借贷。看好钱包，避免不必要的应酬开销。破小财免大灾，不必太过挂怀。' },
-  { level:'bad', text:'今日财运欠佳，切忌赌博与高风险投资。若有借钱请求，宜三思而行。节俭一日，为明日积福。' },
-];
-
-const loveFortunes = [
-  { level:'good', text:'桃花盛开，单身者今日社交场合易遇有缘人。有伴者感情升温，适宜深谈未来规划。' },
-  { level:'good', text:'心照不宣之日，与伴侣间的默契达到新高度。单身者勿宅，走出去，缘分在西南方向。' },
-  { level:'mid', text:'感情平稳，宜细水长流。今日不宜翻旧账，多夸赞对方一句，胜过千言万语。' },
-  { level:'mid', text:'社交运佳，朋友聚会可结识新友。但须分清友情与暧昧，免生误会。午后来电，或有惊喜。' },
-  { level:'warn', text:'今日易生误会，言语间多加柔和。伴侣情绪敏感之时，一个拥抱胜过道理万千。' },
-  { level:'bad', text:'感情有波折，沟通恐遇冷。今日宜给对方空间，各自冷静后再谈。来日方长，不必急于一时。' },
-];
-
-const healthFortunes = [
-  { level:'good', text:'身心康泰，精力充沛。今日适合锻炼，晨间运动效果尤佳。多饮水，养肝为先。' },
-  { level:'mid', text:'大体安好，唯肩颈须留意。久坐之后起身舒展，喝杯温水，小动作大益处。' },
-  { level:'mid', text:'精神尚可，但肠胃需养护。今日饮食宜清淡，少食辛辣油腻。早睡一刻，胜过补药三碗。' },
-  { level:'warn', text:'今日易疲劳，注意劳逸结合。午后小憩一刻钟，效率倍增。眼干者远眺绿色为佳。' },
-  { level:'bad', text:'今日易感风寒，注意保暖。忌熬夜与暴饮暴食。情绪低落时，出去散散步，天地之气可解忧愁。' },
-];
-
-function generateLines(nameHash, dateHash) {
-  const seed = nameHash ^ dateHash;
-  const lines = [];
-  for (let i = 0; i < 6; i++) {
-    const val = ((seed >> (i * 5)) & 0x1f) % 4;
-    lines.push(val === 0 ? '—' : val === 1 ? '— —' : val === 2 ? '— o → — —' : '— — x → —');
-  }
-  return lines;
+function getLineStr(val){
+  return val===0?'— —':val===1?'———':val===2?'— — × → ———':val===3?'——— ○ → — —':'';
 }
 
-function showFortune() {
-  const name = document.getElementById('nameInput').value.trim();
-  if (!name) {
-    document.getElementById('nameInput').focus();
+function triIdx(rem){
+  const map=[1,0,7,2,4,6,3,5]; // idx rem 1乾(0) 2兑(7) 3离(2) 4震(4) 5巽(6) 6坎(3) 7艮(5) 8/0坤(1)
+  return map[rem];
+}
+
+function meiHuaChange(n1,n2){
+  const r1 = n1%8 || 8, r2 = n2%8 || 8;
+  const upper = triIdx(r1), lower = triIdx(r2);
+  const dongYao = ((n1+n2)%6);
+  const dongYao1 = dongYao===0?6:dongYao;
+  return {upper,lower,dongYao:dongYao1,dongIdx:dongYao1-1};
+}
+
+function xiaoLiuRenCalc(n1,n2){
+  const p = ((n1-1)%6 + (n2-1)%6)%6;
+  const shun = ((n1-1)%6)+1;
+  const ni = 6-((n2-1)%6);
+  const final = ((n1+n2-1)%6)%6;
+  return xiaoLiuRen[final];
+}
+
+/* ========== MAIN ========== */
+function doDivination(){
+  const n1=parseInt(document.getElementById('num1').value,10);
+  const n2=parseInt(document.getElementById('num2').value,10);
+  if(isNaN(n1)||isNaN(n2)||n1<1||n2<1){
+    if(isNaN(n1)||n1<1)document.getElementById('num1').focus();
+    else document.getElementById('num2').focus();
     return;
   }
 
-  const nameHash = hashCode(name);
-  const dateHash = hashCode(dateStr);
-  const combined = nameHash ^ dateHash;
+  const dateStr=`${new Date().getFullYear()}${new Date().getMonth()+1}${new Date().getDate()}`;
+  const dateHash=hashCode(dateStr);
+  const seed=Math.abs(n1*31+n2)^dateHash;
 
-  const hIdx = combined % hexagrams.length;
-  const hex = hexagrams[hIdx];
+  /* --- 小六壬 --- */
+  const xlr=xiaoLiuRenCalc(n1,n2);
+  document.getElementById('cardXiaoLiuRen').innerHTML=`
+    <div class="method-head">
+      <div class="icon" style="background:#f3e0f0;">🔮</div>
+      <h2>小六壬</h2>
+      <span class="badge ${xlr.level==='ji'?'badge-ji':'badge-xiong'}">${xlr.level==='ji'?'吉':'凶'}</span>
+    </div>
+    <div class="method-body">
+      <div class="gua-display">
+        <div class="big-name">${xlr.name}</div>
+        <div class="detail">五行属${xlr.wuxing}　·　方位${xlr.dir}</div>
+      </div>
+      <p>${xlr.desc}</p>
+      <div class="xiaoliuren-grid">
+        <div class="sl-item"><span class="sl-label">事业</span><br>${xlr.career}</div>
+        <div class="sl-item"><span class="sl-label">财运</span><br>${xlr.wealth}</div>
+        <div class="sl-item"><span class="sl-label">感情</span><br>${xlr.love}</div>
+        <div class="sl-item"><span class="sl-label">健康</span><br>${xlr.health}</div>
+      </div>
+    </div>`;
 
-  document.getElementById('guaName').textContent = hex.name;
-  document.getElementById('guaLines').textContent =
-    `${trigrams[hex.upper]} 上 · ${trigrams[hex.lower]} 下`;
-  document.getElementById('guaNum').textContent =
-    `${elements[hex.upper]}上${elements[hex.lower]}下  |  第${hIdx + 1}卦`;
+  /* --- 梅花易数 --- */
+  const mh=meiHuaChange(n1,n2);
 
-  document.getElementById('overall').textContent = hex.desc;
+  // generate 6 lines for 本卦 using seed
+  const benLines=[];
+  for(let i=0;i<6;i++) benLines.push(((seed>>(i*5))&0x1f)&1);
 
-  const c = careerFortunes[(nameHash + 0) % careerFortunes.length];
-  document.getElementById('career').textContent = c.text;
-  document.getElementById('career').className = 'card-val ' + c.level;
+  // 互卦: lines 2,3,4 → lower trigram; lines 3,4,5 → upper trigram (1-indexed)
+  const triValToIdx=[1,5,3,6,4,2,7,0]; // 3-bit value → baGua index (☷→坤1,☶→艮5,☵→坎3,☴→巽6,☳→震4,☲→离2,☱→兑7,☰→乾0)
+  const interLoVal=(benLines[3]<<2)|(benLines[2]<<1)|benLines[1];
+  const interUpVal=(benLines[4]<<2)|(benLines[3]<<1)|benLines[2];
+  const interG=findHex(triValToIdx[interUpVal],triValToIdx[interLoVal]);
 
-  const w = wealthFortunes[(nameHash + 1) % wealthFortunes.length];
-  document.getElementById('wealth').textContent = w.text;
-  document.getElementById('wealth').className = 'card-val ' + w.level;
+  // 变卦: flip the changing line
+  const bianLines=[...benLines];
+  bianLines[mh.dongIdx]=bianLines[mh.dongIdx]?0:1;
+  const bianLoTri=(bianLines[2]<<2)|(bianLines[1]<<1)|bianLines[0];
+  const bianUpTri=(bianLines[5]<<2)|(bianLines[4]<<1)|bianLines[3];
+  const bianG=findHex(triValToIdx[bianUpTri],triValToIdx[bianLoTri]);
 
-  const l = loveFortunes[(nameHash + 2) % loveFortunes.length];
-  document.getElementById('love').textContent = l.text;
-  document.getElementById('love').className = 'card-val ' + l.level;
+  const benG=findHex(mh.upper,mh.lower);
 
-  const hl = healthFortunes[(nameHash + 3) % healthFortunes.length];
-  document.getElementById('health').textContent = hl.text;
-  document.getElementById('health').className = 'card-val ' + hl.level;
+  const tiGua=mh.dongIdx<3?baGua[mh.upper]:baGua[mh.lower];
+  const yongGua=mh.dongIdx<3?baGua[mh.lower]:baGua[mh.upper];
+  const wuxingRel={
+    '金':{生:'水',克:'木'},
+    '水':{生:'木',克:'火'},
+    '木':{生:'火',克:'土'},
+    '火':{生:'土',克:'金'},
+    '土':{生:'金',克:'水'},
+  };
+  let tiYongTxt='';
+  if(tiGua.element===yongGua.element) tiYongTxt='体用比和，主客相得，万事顺遂。';
+  else if(wuxingRel[tiGua.element]&&wuxingRel[tiGua.element].克===yongGua.element) tiYongTxt='体克用，事虽可成，然费力劳神，宜缓不宜急。';
+  else if(wuxingRel[yongGua.element]&&wuxingRel[yongGua.element].克===tiGua.element) tiYongTxt='用克体，外势压主，今日宜守不宜攻，静待时机。';
+  else if(wuxingRel[tiGua.element]&&wuxingRel[tiGua.element].生===yongGua.element) tiYongTxt='体生用，有耗损之象。付出多而回报少，宜量力而行。';
+  else if(wuxingRel[yongGua.element]&&wuxingRel[yongGua.element].生===tiGua.element) tiYongTxt='用生体，外来生助之象。今日贵人相助，所谋之事易成，大吉。';
 
-  const q = quotes[combined % quotes.length];
-  document.getElementById('quote').textContent = `「${q.text}」`;
-  document.getElementById('quoteSrc').textContent = q.src;
+  document.getElementById('cardMeiHua').innerHTML=`
+    <div class="method-head">
+      <div class="icon" style="background:#f0e0f0;">🌸</div>
+      <h2>梅花易数</h2>
+      <span class="badge badge-ji">${tiYongTxt.includes('大吉')||tiYongTxt.includes('万事顺遂')?'吉':tiYongTxt.includes('用克体')||tiYongTxt.includes('体生用')?'凶':'中'}</span>
+    </div>
+    <div class="method-body">
+      <div class="gua-display">
+        <div class="big-name">${benG[2]}</div>
+        <div class="detail">${baGua[mh.upper].symbol}${baGua[mh.upper].name}上 · ${baGua[mh.lower].symbol}${baGua[mh.lower].name}下　|　动第${mh.dongYao}爻</div>
+      </div>
+      <p>${benG[3]}</p>
+      <div class="arrow-row">⬇ 互卦</div>
+      <div class="gua-display">
+        <div class="big-name" style="font-size:24px;">${interG[2]}</div>
+        <div class="detail">互卦（过程之象）</div>
+      </div>
+      <p>${interG[3]}</p>
+      <div class="arrow-row">⬇ 变卦</div>
+      <div class="gua-display">
+        <div class="big-name" style="font-size:26px; color:#d63384;">${bianG[2]}</div>
+        <div class="detail">变卦（结果之象）</div>
+      </div>
+      <p>${bianG[3]}</p>
+      <div class="sub-label">体用生克</div>
+      <p><strong>体卦</strong>（${tiGua.symbol}${tiGua.name}·${tiGua.element}）← <strong>用卦</strong>（${yongGua.symbol}${yongGua.name}·${yongGua.element}）<br>${tiYongTxt}</p>
+    </div>`;
 
-  document.getElementById('result').classList.add('show');
-  setTimeout(() => {
-    document.getElementById('result').scrollIntoView({ behavior:'smooth', block:'nearest' });
-  }, 100);
+  /* --- 六爻 --- */
+  const yaoLines=[];
+  for(let i=0;i<6;i++){
+    const v=((seed>>(i*5+2))&0xff)%4;
+    yaoLines.push({val:v,idx:i});
+  }
+  const triValToIdx2=[1,5,3,6,4,2,7,0];
+  const yaoUpTri=((yaoLines[3].val&2?1:0)<<2)|((yaoLines[4].val&2?1:0)<<1)|(yaoLines[5].val&2?1:0);
+  const yaoLoTri=((yaoLines[0].val&2?1:0)<<2)|((yaoLines[1].val&2?1:0)<<1)|(yaoLines[2].val&2?1:0);
+  const yaoBenG=findHex(triValToIdx2[yaoUpTri]||0,triValToIdx2[yaoLoTri]||0);
+  const changingLines=yaoLines.filter(l=>l.val===2||l.val===3);
+  let liuYaoInterpret='';
+  if(changingLines.length===0) liuYaoInterpret='六爻安静，无动爻。今日诸事以守为进，静观其变。';
+  else if(changingLines.length===1) liuYaoInterpret=`仅一爻动，事机单纯明确。动爻在${['初','二','三','四','五','上'][changingLines[0].idx]}爻，此为事变之关键所在。`;
+  else if(changingLines.length===2) liuYaoInterpret='两爻齐动，内外皆有变化。宜观上下两爻之势，取其中道而行。';
+  else liuYaoInterpret=`${changingLines.length}爻齐动，变动过大。今日宜静不宜动，待尘埃落定再作决断。`;
+
+  document.getElementById('cardLiuYao').innerHTML=`
+    <div class="method-head">
+      <div class="icon" style="background:#f0e0e8;">☯</div>
+      <h2>六爻占卜</h2>
+      <span class="badge ${changingLines.length===0?'badge-ji':changingLines.length<=2?'badge-zhong':'badge-xiong'}">${changingLines.length===0?'吉':changingLines.length<=2?'中':'凶'}</span>
+    </div>
+    <div class="method-body">
+      <div class="gua-display">
+        <div class="big-name">${yaoBenG[2]}</div>
+        <div class="detail">本卦</div>
+      </div>
+      ${yaoLines.map(l=>`
+        <div class="line-row">
+          <span class="yao ${l.val===2||l.val===3?'yao-change':'yao-stable'}">${getLineStr(l.val)}</span>
+          <span style="font-size:11px;color:#b088b8;">${['初','二','三','四','五','上'][l.idx]}爻${l.val===0?' · 少阴':l.val===1?' · 少阳':l.val===2?' · 老阴 → 少阳':l.val===3?' · 老阳 → 少阴':''}</span>
+        </div>
+      `).join('')}
+      <p>${liuYaoInterpret}</p>
+      <div class="sub-label">卦辞</div>
+      <p>${yaoBenG[3]}</p>
+    </div>`;
+
+  /* --- 大六壬 --- */
+  const dlrIdx=(n1+n2)%12;
+  const dlr=tianJiang[dlrIdx];
+  document.getElementById('cardDaLiuRen').innerHTML=`
+    <div class="method-head">
+      <div class="icon" style="background:#eee0f0;">🐉</div>
+      <h2>大六壬</h2>
+      <span class="badge ${dlr.level==='ji'?'badge-ji':dlr.level==='xiong'?'badge-xiong':'badge-zhong'}">${dlr.level==='ji'?'吉':dlr.level==='xiong'?'凶':'中'}</span>
+    </div>
+    <div class="method-body">
+      <div class="gua-display">
+        <div class="big-name">${dlr.name}</div>
+        <div class="detail">天将 · ${dlr.wuxing}神</div>
+      </div>
+      <p>${dlr.desc}</p>
+    </div>`;
+
+  document.getElementById('resultArea').classList.add('show');
+  setTimeout(()=>{
+    document.getElementById('resultArea').scrollIntoView({behavior:'smooth',block:'start'});
+  },100);
 }
 
-function resetForm() {
-  document.getElementById('result').classList.remove('show');
-  document.getElementById('nameInput').value = '';
-  document.getElementById('nameInput').focus();
-  window.scrollTo({ top: 0, behavior:'smooth' });
+function resetAll(){
+  document.getElementById('resultArea').classList.remove('show');
+  document.getElementById('num1').value='';
+  document.getElementById('num2').value='';
+  document.getElementById('num1').focus();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-document.getElementById('nameInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') showFortune();
+document.getElementById('num2').addEventListener('keydown',function(e){
+  if(e.key==='Enter')doDivination();
 });
 </script>
-
 </body>
 </html>
