@@ -265,6 +265,27 @@ body {
   line-height:1.6;
 }
 
+.fun-fact-card {
+  background: linear-gradient(135deg, #fdf8ff, #fff5fb);
+  border-radius:10px;
+  padding:14px 18px;
+  margin-top:16px;
+  border:1px solid #f0d8f0;
+}
+
+.fun-fact-label {
+  font-size:11px;
+  color:#b088b8;
+  letter-spacing:2px;
+  margin-bottom:6px;
+}
+
+.fun-fact-text {
+  font-size:13px;
+  color:#5e4270;
+  line-height:1.7;
+}
+
 .footer-action {
   text-align:center;
   margin-top:24px;
@@ -416,48 +437,134 @@ const hex64 = [
 /* ========== 音乐推荐库 ========== */
 const songDB = {
   '乾': [
-    { title:'沧海一声笑', artist:'许冠杰', vibe:'豪迈洒脱', reason:'乾为天，刚健中正。这首歌的江湖侠气正好配你今天的势不可挡。' },
-    { title:'男儿当自强', artist:'林子祥', vibe:'气势磅礴', reason:'乾卦主刚健，自强不息。这歌里那股不服输的劲儿，就是你今天的底色。' },
-    { title:'我的天空', artist:'南征北战', vibe:'热血向上', reason:'乾象纯阳，能量拉满。听这首歌，把今天的冲劲全部释放出来。' },
+    { title:'Believer', artist:'Imagine Dragons', vibe:'势不可挡 Unstoppable', reason:'Pain! You made me a believer——乾卦六爻纯阳说的就是你现在的状态，被生活揍过反而更强。今天别犹豫，go get it。' },
+    { title:'Hall of Fame', artist:'The Script ft. will.i.am', vibe:'巅峰之志 Champion', reason:'Standing in the hall of fame——乾卦的天行健精神，就是告诉你世界很大但你配得上。今天就去拿属于你的那个位置。' },
+    { title:'孤勇者', artist:'陈奕迅', vibe:'燃炸全场 Fierce', reason:'爱你孤身走暗巷——乾卦虽刚但有时也孤独。谁说站在光里的才算英雄？你今天就是自己的光。' },
+    { title:'Unstoppable', artist:'Sia', vibe:'无人能挡 Invincible', reason:'I\'m unstoppable today——Sia 这一嗓子就是乾卦本卦。天雷滚滚也挡不住你，冲就完了。' },
   ],
   '坤': [
-    { title:'风吹麦浪', artist:'李健', vibe:'温柔宁静', reason:'坤为地，厚德载物。像大地一样沉稳温柔，今天适合听点治愈的歌。' },
-    { title:'稳稳的幸福', artist:'陈奕迅', vibe:'踏实温暖', reason:'坤卦主承载包容。你今天的运势就是稳稳当当，不急不躁刚刚好。' },
-    { title:'稻香', artist:'周杰伦', vibe:'回归本真', reason:'坤象大地，回归的根本。听这首歌回到最朴素的状态，反而最有力量。' },
+    { title:'Perfect', artist:'Ed Sheeran', vibe:'温柔浪漫 Tender', reason:'We are still kids but we\'re so in love——坤卦的厚德载物，就是这种大地般无条件的温柔。今天允许自己柔软一点。' },
+    { title:'无名的人', artist:'毛不易', vibe:'平凡坚定 Humble & Strong', reason:'坤卦看似柔弱实则坚韧——无名的人啊，你脚下的每一步路都算数，大地记得你所有的努力。' },
+    { title:'小幸运', artist:'田馥甄', vibe:'温暖治愈 Warm', reason:'与你相遇好幸运——坤象承载万物，生活中的小幸运都是大地悄悄送你的礼物。今天用心感受一下。' },
+    { title:'Someone Like You', artist:'Adele', vibe:'深情释然 Letting Go', reason:'坤能包容一切，包括遗憾和告别。Adele 把心碎唱成了大地般的辽阔——sometimes it lasts in love, but sometimes it hurts instead。' },
   ],
   '震': [
-    { title:'追梦赤子心', artist:'GALA', vibe:'热血沸腾', reason:'震为雷，一鸣惊人。今天需要一点爆发力，这首歌能给你充电。' },
-    { title:'起风了', artist:'买辣椒也用券', vibe:'迎风而上', reason:'震动不息，万象更新。像风一样迎接今天的变化，一切都会好起来。' },
-    { title:'夜空中最亮的星', artist:'逃跑计划', vibe:'坚定前行', reason:'震卦的动能在你身上，今天不被困难吓倒，你就是那颗最亮的星。' },
+    { title:'Wake Me Up', artist:'Avicii', vibe:'觉醒之力 Awakening', reason:'Wake me up when it\'s all over——震为雷，一声春雷震醒冬眠的你。Avicii 的节奏就是老天在说：别睡了，你的人生开始了。' },
+    { title:'Thunder', artist:'Imagine Dragons', vibe:'雷霆万钧 Thunderbolt', reason:'Thunder, feel the thunder——震卦本卦曲。古人听到打雷就知道春天来了要播种，你今天听到这首歌就该行动起来。' },
+    { title:'追梦赤子心', artist:'GALA', vibe:'热血沸腾 Passion', reason:'向前跑迎着冷眼和嘲笑——震卦的动能配上 GALA 的嘶吼，就是你今天敢跟世界叫板的底气。' },
+    { title:'Can\'t Hold Us', artist:'Macklemore & Ryan Lewis', vibe:'势如破竹 Unstoppable', reason:'Ceiling can\'t hold us——震卦就是这股"谁都拦不住老子"的劲儿。今天你就是自己的天花板破坏者。' },
   ],
   '巽': [
-    { title:'起风了', artist:'买辣椒也用券', vibe:'随风而行', reason:'巽为风，无孔不入。用柔的方式解决硬的问题，这首歌的轻盈感刚好给你灵感。' },
-    { title:'风吹过', artist:'陈粒', vibe:'空灵洒脱', reason:'风行天下，来去自如。别太执着，像风一样自由，答案自会出现。' },
-    { title:'旅途', artist:'朴树', vibe:'随风飘荡', reason:'巽卦主入微通透，适合随风而行。朴树的洒脱最适合你今天的心境。' },
+    { title:'Let Her Go', artist:'Passenger', vibe:'随风释怀 Free', reason:'Only know you love her when you let her go——巽为风，该放手的时候别攥着。像风一样轻盈反而走得更远，let it go。' },
+    { title:'Riptide', artist:'Vance Joy', vibe:'自由流动 Flow', reason:'Lady, running down to the riptide——巽象风入万物，Vance Joy 的 ukulele 就是你今天该有的状态：轻松、流动、不费力。' },
+    { title:'飞鸟和蝉', artist:'任然', vibe:'轻盈通透 Breezy', reason:'巽卦主风，飞鸟乘风而起。今天轻装上阵，别背太重的包袱——你是飞鸟，不是蜗牛。' },
+    { title:'Blinding Lights', artist:'The Weeknd', vibe:'风驰电掣 Synthwave', reason:'I\'m blinded by the lights——巽为入微无孔不入。Weeknd 的 synthwave 就是你今天的背景音：风一样渗透，酷到不行。' },
   ],
   '坎': [
-    { title:'默', artist:'那英', vibe:'深沉内省', reason:'坎为水，深不可测。今天可能有心事暗流涌动，听这首歌梳理一下。' },
-    { title:'匆匆那年', artist:'王菲', vibe:'回忆流转', reason:'水象流动，往事如烟。坎卦提醒你小心暗礁，但也不必太过紧张。' },
-    { title:'空白格', artist:'蔡健雅', vibe:'深沉治愈', reason:'坎中带险，需要静心。这首歌的空灵感能帮你在不确定中找到平静。' },
+    { title:'Someone You Loved', artist:'Lewis Capaldi', vibe:'深情涌动 Deep Feel', reason:'Now the day bleeds into nightfall——坎为水，深不见底的情感像潮水一样。Lewis Capaldi 的嗓音就是水象本象，让你哭也让你治愈。' },
+    { title:'All of Me', artist:'John Legend', vibe:'全心投入 All In', reason:'Cause all of me loves all of you——水能载舟，全心投入才是坎卦破局之道。John Legend 教你，爱就 all in，别留退路。' },
+    { title:'水星记', artist:'郭顶', vibe:'深邃内敛 Cosmic', reason:'还要多远才能进入你的心——坎卦主水，水星记的宇宙孤独感刚好贴合你内心的暗流。有些心事不用说出来，听歌就好。' },
+    { title:'Stay', artist:'Rihanna ft. Mikky Ekko', vibe:'脆弱坦诚 Vulnerable', reason:'Not really sure how to feel about it——坎中带险，坦诚是最好的救生圈。Rihanna 的脆弱太真实了，sometimes staying is harder than leaving。' },
   ],
   '离': [
-    { title:'孤勇者', artist:'陈奕迅', vibe:'燃爆全场', reason:'离为火，光明普照。今天你就是人群中最亮的那一个，不必低调。' },
-    { title:'光年之外', artist:'邓紫棋', vibe:'璀璨夺目', reason:'离卦主光明热情。这首歌的力量感刚好配你今天的光芒四射。' },
-    { title:'篇章', artist:'张韶涵/王赫野', vibe:'昂扬向前', reason:'火在天上，大有之象。翻开新的篇章，今天做什么都会发光。' },
+    { title:'Shake It Off', artist:'Taylor Swift', vibe:'阳光洒脱 Carefree', reason:'Haters gonna hate hate hate——离为火，光明普照。霉霉教你今天把所有烦心事 shake it off，你可是自带小太阳体质的人。' },
+    { title:'Happy', artist:'Pharrell Williams', vibe:'快乐无边 Joyful', reason:'Clap along if you feel like happiness is the truth——离卦光明热烈，Pharrell 就是人间维生素 D。今天快乐不需要理由，因为你就是理由。' },
+    { title:'光年之外', artist:'邓紫棋', vibe:'璀璨夺目 Dazzling', reason:'缘分让我们相遇乱世以外——离象火在天上，邓紫棋的高音就是火的形状。今天你自带光芒，走到哪里都是焦点。' },
+    { title:'Uptown Funk', artist:'Mark Ronson ft. Bruno Mars', vibe:'活力全开 Energetic', reason:'Don\'t believe me just watch——离卦的热情需要一首 Funk 来配。Bruno Mars 的自信就是你的自信，today you\'re on fire, literally。' },
   ],
   '艮': [
-    { title:'南山南', artist:'马頔', vibe:'安静沉淀', reason:'艮为山，知止不殆。今天适合停下来，听一首安静的歌，好好想想。' },
-    { title:'山丘', artist:'李宗盛', vibe:'沉稳通透', reason:'山象静止，越过山丘才懂。李宗盛的沧桑感刚好配你今天的内省。' },
-    { title:'平凡之路', artist:'朴树', vibe:'沉稳前行', reason:'艮者止也，适可而止。平凡的路走到深处，自有它的不平凡。' },
+    { title:'南山南', artist:'马頔', vibe:'安静沉淀 Stillness', reason:'你在南方的艳阳里大雪纷飞——艮为山，停下来才是智慧。马頔的民谣就是那座山，让你在喧嚣里找到一块安静的地方。' },
+    { title:'Say Something', artist:'A Great Big World', vibe:'温柔克制 Restrained', reason:'Say something I\'m giving up on you——山象静止，不说话的力量比大喊大叫强一百倍。艮卦的克制里藏着最深的情。' },
+    { title:'山丘', artist:'李宗盛', vibe:'沉稳通透 Wise', reason:'越过山丘才发现无人等候——艮卦告诉你，停下来的理由不是没人等，而是你自己终于学会不急着赶路了。' },
+    { title:'Stay With Me', artist:'Sam Smith', vibe:'安静陪伴 Companion', reason:'Won\'t you stay with me——山不动但它一直都在。Sam Smith 的声音像一座可以靠的山，艮卦的稳定感就是这种安静的陪伴。' },
   ],
   '兑': [
-    { title:'小幸运', artist:'田馥甄', vibe:'甜蜜愉悦', reason:'兑为泽，悦乐之象。今天会有小确幸，听这首歌把好心情放大。' },
-    { title:'告白气球', artist:'周杰伦', vibe:'轻松欢快', reason:'兑主口舌悦乐。今天适合轻松一点，来首甜歌开心一下。' },
-    { title:'路过人间', artist:'郁可唯', vibe:'温暖治愈', reason:'兑为喜悦，人间值得。这首歌提醒你，每一天都值得被好好对待。' },
+    { title:'Shut Up and Dance', artist:'Walk the Moon', vibe:'欢快律动 Dance!', reason:'Don\'t you dare look back, just keep your eyes on me——兑为泽，悦乐之象。今天别想太多，shut up and dance，开心就完事了。' },
+    { title:'Shape of You', artist:'Ed Sheeran', vibe:'轻松甜蜜 Sweet', reason:'I\'m in love with the shape of you——兑主口舌悦乐，黄老板的节奏就是今天的暧昧背景音。适合 flirt、date、或者自己偷偷开心。' },
+    { title:'告白气球', artist:'周杰伦', vibe:'浪漫甜蜜 Romantic', reason:'塞纳河畔左岸的咖啡——兑为喜悦，周董这首就是浪漫制造机。今天适合表白、约会、或者买杯咖啡自己享受。' },
+    { title:'Can\'t Stop the Feeling', artist:'Justin Timberlake', vibe:'快乐至上 Joy', reason:'I got that sunshine in my pocket——兑卦就是你的口袋小太阳。Justin Timberlake 的快乐传染力，让你今天什么烦恼都带不走。' },
   ],
 };
 
-/* ========== HELPERS ========== */
+/* ========== 国学冷知识 ========== */
+const funFacts = {
+  '乾': [
+    '孔子晚年读《易经》，把串竹简的牛皮绳翻断了三次。别担心，你看手机肯定比孔子勤奋。',
+    '乾卦六条阳爻代表龙的六种状态：潜龙→见龙→惕龙→跃龙→飞龙→亢龙。翻译成人话：苟着→露面→小心→蹦跶→起飞→别飘。',
+    '故宫太和殿原名"乾清宫"，取的就是乾卦——皇帝自称天子嘛，当然要住天字第一号的卦。',
+  ],
+  '坤': [
+    '坤卦说"利牝马之贞"——母马既温顺又能跑远路。翻译：又乖又猛，古人早就在赞美独立女性了。',
+    '老子说"上善若水"，坤卦说"厚德载物"。一个水利万物而不争，一个大地承载万物——道家两大顶级美德。',
+    '坤卦是《易经》中唯一全阴爻的卦。你以为阴柔好欺负？错，大地一发脾气就是地震，别惹坤。',
+  ],
+  '震': [
+    '震卦对应长子，也对应打雷。古人认为雷声是老天在提醒你：该起床干活了，别躺了。',
+    '震卦爻辞说"震来虩虩，笑言哑哑"——雷劈下来的时候吓得发抖，过后又笑嘻嘻。人类的忘性果然自古如此。',
+    '古人在打雷天禁止行房……因为震卦主"动"，担心生出多动症小孩。这逻辑，很古人。',
+  ],
+  '巽': [
+    '巽为风，风的特性是无孔不入。所以巽卦告诉你：硬的不行来软的，正面攻不进去就从侧面试试。',
+    '诸葛亮借东风就是巽卦的顶级操作——不用一兵一卒，靠对风的了解就赢了赤壁之战。会借势比会打架重要一万倍。',
+    '巽卦在中医里对应胆经，古人认为"胆主决断"。所以巽卦强的人做决定特别快——不是鲁莽，是风一样的执行力。',
+  ],
+  '坎': [
+    '坎卦是双水重叠——危险加倍。但坎卦爻辞又说"维心亨"：只要心态好，再难也能过。就是古人版的"稳住我们能赢"。',
+    '大禹治水就是坎卦的现实应用：堵不如疏。今天遇到什么坎，别硬刚，换个角度疏导一下。',
+    '坎卦代表月亮，离卦代表太阳。所以古代算命的看你坎卦动，会说：你可能要emo一下，但没关系，月亮总有阴晴圆缺。',
+  ],
+  '离': [
+    '离为火，也代表凤凰。所以离卦强的人适合搞艺术、做网红——天生自带聚光灯体质。',
+    '离卦爻辞里有个"突如其来如，焚如，死如，弃如"——突然着火，烧光，死掉，抛弃。古人用离卦提醒：热情是好事，但别把自己点燃了。',
+    '离卦是《易经》中唯一一个用"畜牝牛"来形容好运的卦。翻译：养头母牛就是吉祥。朴实无华的古代祝福。',
+  ],
+  '艮': [
+    '艮为山，爻辞说"艮其背，不获其身"——注意力集中在背上，连自己身体都感觉不到了。古人版的冥想正念。',
+    '陶渊明"采菊东篱下，悠然见南山"——南山就是艮卦的意象。停下来看看山，比一直赶路更接近幸福。',
+    '艮卦在《易经》里是唯一以人体部位（背）打比方的卦。古人认为背是身体最诚实的部分，不会骗人——不像嘴。',
+  ],
+  '兑': [
+    '兑为泽，也代表口舌。所以兑卦强的人适合当老师、律师、主播——靠嘴吃饭，天经地义。',
+    '兑卦爻辞说"和兑，吉"——和气地说话是吉利的。翻译：好好说话，别阴阳怪气，运气会变好。',
+    '兑卦是八卦里最年轻的一个——对应少女。所以《易经》早就剧透了：年轻女性是快乐和创造力的源泉。',
+  ],
+};
+
+/* ========== 英文卦名查询 ========== */
+const hexEnNames = {
+  '0,0':'The Creative', '1,1':'The Receptive', '3,4':'Difficulty at the Beginning',
+  '5,3':'Youthful Folly', '3,0':'Waiting', '0,3':'Conflict',
+  '1,3':'The Army', '3,1':'Holding Together', '6,0':'Small Taming',
+  '0,7':'Treading', '1,0':'Peace', '0,1':'Standstill',
+  '0,2':'Fellowship', '2,0':'Great Possession', '1,5':'Modesty',
+  '4,1':'Enthusiasm', '7,4':'Following', '5,6':'Decay',
+  '1,7':'Approach', '6,1':'Contemplation', '2,4':'Biting Through',
+  '5,2':'Grace', '5,1':'Splitting Apart', '1,4':'Return',
+  '0,4':'Innocence', '5,0':'Great Taming', '5,4':'Nourishment',
+  '7,6':'Preponderance', '3,3':'The Abysmal', '2,2':'The Clinging',
+  '7,5':'Influence', '4,6':'Duration', '0,5':'Retreat',
+  '4,0':'Great Power', '2,1':'Progress', '1,2':'Darkening of the Light',
+  '6,2':'The Family', '2,7':'Opposition', '3,5':'Obstruction',
+  '4,3':'Deliverance', '5,7':'Decrease', '6,4':'Increase',
+  '7,0':'Breakthrough', '0,6':'Coming to Meet', '7,1':'Gathering Together',
+  '1,6':'Pushing Upward', '7,3':'Oppression', '3,6':'The Well',
+  '7,2':'Revolution', '2,6':'The Cauldron', '4,4':'The Arousing',
+  '5,5':'Keeping Still', '6,5':'Development', '4,7':'The Marrying Maiden',
+  '4,2':'Abundance', '2,5':'The Wanderer', '6,6':'The Gentle',
+  '7,7':'The Joyous', '6,3':'Dispersion', '3,7':'Limitation',
+  '6,7':'Inner Truth', '4,5':'Small Excess', '3,2':'After Completion',
+  '2,3':'Before Completion',
+};
+
+function getEnName(upper,lower){
+  return hexEnNames[upper+','+lower] || baGua[upper].nature + ' over ' + baGua[lower].nature;
+}
+
+function getFunFact(upper,lower,seed){
+  const gua = baGua[upper];
+  const pool = funFacts[gua.name] || funFacts['乾'];
+  return pool[seed % pool.length];
+}
 function hashCode(str){ let h=0; for(let i=0;i<str.length;i++){h=((h<<5)-h)+str.charCodeAt(i);h|=0;} return Math.abs(h); }
 
 const triMap=[1,0,7,2,4,6,3,5];
@@ -477,16 +584,40 @@ function findHex(upper,lower){
   return [upper,lower, l.name+u.name, `${l.desc}同时${u.desc}。上卦为${u.nature}、下卦为${l.nature}，合而观之。`];
 }
 
-function getMeiHuaWealth(tiYong){
-  if(tiYong.includes('用生体')) return '财源自来，今天适合收账、谈合作，进账可期。别太保守，该出手就出手。';
-  if(tiYong.includes('体用比和')||tiYong.includes('万事顺遂')) return '收支平衡，稳稳当当。适合做长期规划，别碰高风险的。细水长流最安心。';
-  if(tiYong.includes('体克用')) return '能赚但辛苦，付出才有回报。今天别想不劳而获，踏实干反而有惊喜。';
-  if(tiYong.includes('体生用')) return '容易花钱的一天，注意控制支出。别借钱给人，也别大手大脚。';
-  if(tiYong.includes('用克体')) return '财运受阻，看好钱包。今天不适合投资、借钱、大额消费，保守为上。';
-  return '财运平平，按部就班即可。今天不宜有大动作。';
+function getFortuneZhengCai(tiYong){
+  if(tiYong.includes('用生体')) return '正财运强，工作中的收入稳定增长。今天适合谈加薪、签合同，付出有回报。';
+  if(tiYong.includes('体用比和')||tiYong.includes('万事顺遂')) return '正财平稳，工资收入按部就班。今天适合做长期理财规划，别折腾。';
+  if(tiYong.includes('体克用')) return '钱能赚到但比较累。今天干活别偷懒，努力能看到回报，但别指望轻松。';
+  if(tiYong.includes('体生用')) return '正财有流出的风险，别冲动提离职或换工作。先稳住主业，守住基本盘。';
+  if(tiYong.includes('用克体')) return '正财吃紧，工作上的钱可能有延迟或扣减。今天保守点，别做大的财务决定。';
+  return '正财一般，保持现状就好。今天不宜在工作收入上有大动作。';
 }
-
-function getMeiHuaLove(tiYong){
+function getFortunePianCai(tiYong){
+  if(tiYong.includes('用生体')) return '偏财运旺！投资、副业、外快都可能有惊喜。今天适合小试牛刀，但别贪心。';
+  if(tiYong.includes('体用比和')||tiYong.includes('万事顺遂')) return '偏财平平无奇，别指望天上掉馅饼。今天不适合买彩票炒短线，稳字当头。';
+  if(tiYong.includes('体克用')) return '偏财有机会但要动脑子。副业或投资可以关注，但需要自己做足功课，别跟风。';
+  if(tiYong.includes('体生用')) return '偏财容易打水漂。今天别碰股票基金、别借钱给别人，冲动消费更要忍住。';
+  if(tiYong.includes('用克体')) return '偏财运很差，小心投资陷阱和诈骗。今天捂紧口袋，任何让你掏钱的事都要三思。';
+  return '偏财平平，没有特别的进账机会。按部就班就好，别指望意外之财。';
+}
+function getFortuneHealth(tiYong, tiGua){
+  const base = tiYong.includes('用生体')||tiYong.includes('万事顺遂')
+    ? '精力充沛，身体状态在线。适合运动流汗，越动越有精神。'
+    : tiYong.includes('体克用')
+    ? '身体还行但容易透支。今天别硬撑，累了就歇，劳逸结合最重要。'
+    : tiYong.includes('体生用')||tiYong.includes('用克体')
+    ? '身体容易疲惫，抵抗力下降。今天早点睡，多喝水，别透支健康。'
+    : '身体状态一般，没什么大问题但也没什么活力。适当动一动会好很多。';
+  const tips = {
+    '金':'注意呼吸道和皮肤，干燥天气多保湿、戴口罩。',
+    '木':'肝胆和筋骨要注意，少熬夜、多拉伸，生气伤肝。',
+    '水':'肾脏和泌尿系统是重点，多喝水但别憋尿，注意保暖。',
+    '火':'心火旺的话容易失眠烦躁，少喝咖啡浓茶，睡前放空。',
+    '土':'脾胃是今天的弱点，吃清淡点、别暴饮暴食，七分饱刚好。',
+  };
+  return base + ' ' + (tips[tiGua.element] || '');
+}
+function getFortuneLove(tiYong){
   if(tiYong.includes('用生体')) return '有人主动靠近，缘分顺遂。单身的多留意身边人，有伴的今天对方会特别贴心。';
   if(tiYong.includes('体用比和')||tiYong.includes('万事顺遂')) return '势均力敌的关系最舒服。适合坦诚交流，把心里话说出来，默契会更好。';
   if(tiYong.includes('体克用')) return '需要你主动一点。虽然有点累，但值得。别太计较谁付出多，真心会有回报。';
@@ -556,9 +687,12 @@ function doDivination(){
 
   // 音乐推荐
   const song=getSong(benG, seed);
+  const enName = getEnName(mh.upper, mh.lower);
+  const funFact = getFunFact(mh.upper, mh.lower, seed);
 
   document.getElementById('resultCard').innerHTML=`
     <h2>${benG[2]}</h2>
+    <div style="text-align:center;font-size:12px;color:#b088b8;letter-spacing:1px;margin-bottom:10px;">${enName}</div>
     <div class="gua-display">
       <div class="detail">${baGua[mh.upper].symbol}${baGua[mh.upper].name}上 · ${baGua[mh.lower].symbol}${baGua[mh.lower].name}下　|　动第${mh.dongYao}爻</div>
     </div>
@@ -581,17 +715,30 @@ function doDivination(){
 
     <div class="fortune-grid">
       <div class="fortune-card">
-        <div class="card-label">财运</div>
-        <div class="card-val">${getMeiHuaWealth(tiYongTxt)}</div>
+        <div class="card-label">💰 正财</div>
+        <div class="card-val">${getFortuneZhengCai(tiYongTxt)}</div>
       </div>
       <div class="fortune-card">
-        <div class="card-label">感情</div>
-        <div class="card-val">${getMeiHuaLove(tiYongTxt)}</div>
+        <div class="card-label">🎲 偏财</div>
+        <div class="card-val">${getFortunePianCai(tiYongTxt)}</div>
+      </div>
+      <div class="fortune-card">
+        <div class="card-label">💪 健康</div>
+        <div class="card-val">${getFortuneHealth(tiYongTxt, tiGua)}</div>
+      </div>
+      <div class="fortune-card">
+        <div class="card-label">💕 感情</div>
+        <div class="card-val">${getFortuneLove(tiYongTxt)}</div>
       </div>
     </div>
 
+    <div class="fun-fact-card">
+      <div class="fun-fact-label">📚 国学冷知识</div>
+      <div class="fun-fact-text">${funFact}</div>
+    </div>
+
     <div class="music-card">
-      <div class="music-icon">🎵</div>
+      <div class="music-icon">🎵 今日卦曲</div>
       <div class="song-title">${song.title}</div>
       <div class="song-artist">${song.artist}</div>
       <div class="song-vibe">${song.vibe}</div>
